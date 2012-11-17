@@ -1,0 +1,135 @@
+#username-error {
+    		display:none;
+    	}
+    	
+    	#chat {
+    		display: none;
+    	}
+    	
+    	#message-form {
+    	}
+    	
+    	#message-input {
+    	}
+    	
+    	.users-holder {
+    	}
+    	
+    	.users-holder h3 {
+    		font-style: italic;
+    		margin-left: 20px;
+    	}
+    	
+    	ul#users {
+    		list-style: none;
+    	}
+    	
+    	.servo-container {
+    		width: 100%;
+    		text-align: center;
+    	}
+    	
+    	.servo {
+    		z-index: 50;
+    		width: 80px;
+    		
+    		margin: 40px auto;
+    	}
+    	
+    	.servo-body {
+    		width: 80px;
+    		height: 160px;
+    		border-radius: 5px;
+    		background-color: #000;
+    		z-index: 51;
+    		box-shadow: 0 2px 2px 2px #808080;
+    		-moz-box-shadow: 0 2px 2px 2px #808080;
+  			-webkit-box-shadow: 0 2px 2px 2px #808080; 
+    	}
+    	
+    	.servo-screw {
+    		height: 10px;
+    		width: 10px;
+    		line-height: 10px;
+    		text-align: center;
+    		font-size: 10px;
+    		background-color: #303030;
+    		color: #575757;
+    		-moz-box-shadow:    0px 0px 1px 1px #ccc;
+  			-webkit-box-shadow: 0px 0px 1px 1px #ccc;
+  			box-shadow:         0px 0px 1px 1px #ccc;
+    		
+    		border-radius: 5px;
+    		position: absolute;
+    	}
+    	
+    	.TL	{margin: 2px;}
+    	.TR {margin-top: 2px; margin-left: 68px;}
+    	.BL {margin: 2px; margin-top: 148px;}
+    	.BR {margin-top: 148px; margin-left: 68px;}
+    	.servo-head-fix {
+    		height: 15px;
+    		width: 15px;
+    		line-height: 15px;
+      		text-align: center;
+      		border-radius: 7.5px;
+      		text-shadow: .1px .2px #808080;
+      		margin-top: 2.5px;
+      		margin-left: 52.5px;
+      		font-size: 15px;
+    	}
+    	
+    	.servo-label {
+    		height: 90px;
+    		width: 60px;
+    		background-color: #474747;
+    		border-radius: 10px;
+    		position: relative;
+    		float: left;
+    		margin-left: 10px;
+    		margin-top: 50px;
+    		-moz-box-shadow: inset 0 0 3px 3px #808080;
+			-webkit-box-shadow: inset 0 0 3px 3px #808080;
+			box-shadow: inset 0 0 3px 3px #808080;
+    	}
+    	
+    	.servo-head {
+    		background-color: #FFFFF2;
+    		position: absolute;
+    		height: 20px;
+    		width: 120px;
+    		border-radius: 50px;
+    		margin-left: -20px;
+    		margin-top: 20px;
+    		
+    		-moz-box-shadow: 0 0 0.5px 0.5px #808080;
+			-webkit-box-shadow: 0 0 0.5px 0.5px #808080;
+			box-shadow: 0 0 0.5px 0.5px #808080;
+			
+			z-index: 100;
+    	}
+    	
+    	.movebutton {
+    		float: left;
+    		position: relative;
+    		width: 100px;
+    		height: 25px;
+    		line-height: 25px;
+    		text-align: center;
+    		background-color: #F00;
+    		
+    		margin-left: 5px;
+    		margin-right: 5px;
+    		
+    		cursor: pointer;
+    	}
+    	
+    	.button-container {
+    		margin: auto;
+    		text-align: center;
+    		display: hidden;
+    	}
+    	
+    	.clear {
+    		clear: both;
+    	}

@@ -1,0 +1,25 @@
+#######################################
+# WebSocketClient - Enables WebSocket Connectivity
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+WebSocketClient	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+connect	KEYWORD2
+connected	KEYWORD2
+disconnect	KEYWORD2
+monitor	KEYWORD2
+setDataArrivedDelegate	KEYWORD2
+send	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+

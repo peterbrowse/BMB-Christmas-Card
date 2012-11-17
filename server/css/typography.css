@@ -1,0 +1,27 @@
+body {
+	font-family: Helvetica, arial;
+	font-size: 14px;
+	line-height: 20px;
+	color: #333;
+}
+
+h1 {
+	font-size: 20px;
+	line-height: 22px;
+}
+
+.entry-form-container {
+	text-align: center;
+}
+
+#user-email-label, .submit-button, .entry-form-container #user-error {
+	font-size: 14px;
+	text-align: center;
+}
+
+input#user-email {
+	line-height: 18px;
+	height: 18px;
+	vertical-align: middle;
+	text-align: center;
+}
