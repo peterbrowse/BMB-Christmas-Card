@@ -37,19 +37,18 @@ void setup() {
   if(wifiSetup.connect()){
       //Serial.println("santaServer");
       if(readHandshake()) {
-        wifiSetup.client.write(tcpPass[0]); 
+        wifiSetup.client.write(tcpPass[0]);
+        timer.setInterval(10000, pingPong);
+         
       }
-      
-      timer.setInterval(10000, pingPong);
   }
 }
 
 String incomingData = "";               // string to hold the text from server
 
 void loop() {
-  timer.run();
-    
-  while (wifiSetup.client.connected()) {
+  timer.run();  
+  while (wifiSetup.client.available()) {
     monitor();
 //    while (wifiSetup.client.available()) {
 //      char inChar = wifiSetup.client.read();
@@ -73,7 +72,7 @@ void loop() {
   }
     
   if(!wifiSetup.client.connected()) {
-    Serial.println("TCP Connection lost");
+    Serial.println("Link lost in loop");
     timer.deleteTimer(0);
     wifiSetup.client.stop();
     setup();
@@ -182,9 +181,9 @@ void pingPong() {
   }
   
   else {
+    Serial.println("Link lost in heartbeat function");
     timer.deleteTimer(0);
     wifiSetup.client.stop();
-    wifiSetup.connect();
     setup();
   }
 }  
