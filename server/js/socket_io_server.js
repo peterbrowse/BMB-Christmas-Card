@@ -47,15 +47,12 @@ var pool = poolModule.Pool({
 //tcp socket server
 var tcpServer = net.createServer(function (tcpSocket) {
 	console.log('Number of connections on port 8090: ' + tcpServer.connections);
-	
-	tcpSocket.on('error', function(error) {
-		console.log(error);
-	});
 });
 
 tcpServer.on('connection',function(tcpSocket){
 	sendHandShake(tcpSocket);
-	tcpSocket.setKeepAlive(true, 1000);
+	tcpSocket.setKeepAlive(true, 100);
+	tcpSocket.setTimeout(0, tcpTimeoutReported());
     //console.log(tcpSocket.remoteAddress);
     
     tcpSocket.on('data',function(data){
@@ -109,12 +106,12 @@ tcpServer.on('connection',function(tcpSocket){
     	if(tcpSocket == arduinoSocket) {
     		arduinoSocket = null;
     	};
+    	tcpSocket.destroy()
     	console.log(tcpSocket.name + ' socket disconnected;');
     });
 });
 
 tcpServer.on('close', function(){
-	
 	console.log("tcpSocket Disconnected");
 });
 
@@ -332,4 +329,8 @@ function receiveHandShake(data, result) {
 	else {
 		result(false);
 	}
+}
+
+function tcpTimeoutReported() {
+	console.log('tcp timeout reported on tcp socket, ordered continue');
 }
