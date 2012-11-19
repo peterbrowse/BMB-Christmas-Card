@@ -71,7 +71,7 @@ tcpServer.on('connection',function(tcpSocket){
     		else if(tcpSocket.secure) {
     			var message = data.toString('ascii',0,data.length);
     			
-    			if (message == "ping") {
+    			if (message.indexOf("ping") != -1) {
     				arduinoSocket.write("pong\r");
     			}
     			

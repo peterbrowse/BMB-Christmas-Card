@@ -26,7 +26,7 @@ void setup() {
   // initialize serial:
   Serial.begin(9600);
   Serial.println("Waiting to boot");
-  delay(2000);
+  delay(500);
   firingServo.attach(2);
   directionServo.attach(3);
   firingServo.write(firingPos);
@@ -72,10 +72,10 @@ void loop() {
   }
     
   if(!wifiSetup.client.connected()) {
-    Serial.println("Link lost in loop");
+    //Serial.println("Link lost in loop");
     timer.deleteTimer(0);
     wifiSetup.client.stop();
-    setup();
+    software_Reset();
   }
 }
 
@@ -181,9 +181,14 @@ void pingPong() {
   }
   
   else {
-    Serial.println("Link lost in heartbeat function");
+    //Serial.println("Link lost in heartbeat function");
     timer.deleteTimer(0);
     wifiSetup.client.stop();
-    setup();
+    software_Reset();
   }
+}
+
+void software_Reset() // Restarts program from beginning but does not reset the peripherals and registers
+{ 
+  asm volatile ("  jmp 0");  
 }  
