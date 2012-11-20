@@ -31,9 +31,7 @@ bool WiFiSetup::connect()
 	  status = WiFi.begin(_ssid, _pass);
 	   // if you're not connected, stop here:
 	  if ( status != WL_CONNECTED) { 
-	    Serial.println("Couldn't get a wifi connection");
-		connect();
-	    while(true);
+	  	software_Reset();
 	  }
 
 	  // if you are connected, print out info about the connection:
@@ -93,9 +91,13 @@ bool WiFiSetup::connect()
 	    	}
 	    	
 	    	else {
-	    		connect();
-	    		while(true);
+	    		software_Reset();
 	    	}
 	    }
 	}
 }
+
+void WiFiSetup::software_Reset() 
+{ 
+	asm volatile ("  jmp 0");  
+} 

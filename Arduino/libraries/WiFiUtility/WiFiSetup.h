@@ -19,6 +19,7 @@ class WiFiSetup
 		WiFiClient client;
 		
 		bool connect();
+		void software_Reset();
 		
   	private:
 		char* _ssid;

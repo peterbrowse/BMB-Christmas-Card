@@ -1,11 +1,10 @@
 var connection_state = new server_connection();
 
-
 $(document).ready(function() {
 				
 				if(typeof io == 'undefined') {
 					$('.server_contact-container').show();
-					window.setTimeout('location.reload()', 1000); //reloads after 3 seconds
+					window.setTimeout('location.reload()', 3000); //reloads after 3 seconds
 				} else {
 					var socket = io.connect('http://5.79.16.234:8080', {
 						'sync disconnect on unload' : true

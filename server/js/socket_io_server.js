@@ -106,7 +106,7 @@ tcpServer.on('connection',function(tcpSocket){
     	if(tcpSocket == arduinoSocket) {
     		arduinoSocket = null;
     	};
-    	tcpSocket.destroy()
+    	tcpSocket.destroy();
     	console.log(tcpSocket.name + ' socket disconnected;');
     });
 });

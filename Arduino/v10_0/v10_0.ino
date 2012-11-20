@@ -19,8 +19,8 @@ const char* pong[] = {"ping"};
 
 //ServoReset servoReset(servo);
 
-//WiFiSetup wifiSetup("BMB_Guest", "superdry", "5.79.16.234", 8090, 0); //BMB Connection Details
-WiFiSetup wifiSetup("Superfantasticwifi", "mgslalala99", "5.79.16.234", 8090, 0); //Peter's House Connection Details
+WiFiSetup wifiSetup("BMB_Guest", "superdry", "5.79.16.234", 8090, 0); //BMB Connection Details
+//WiFiSetup wifiSetup("Superfantasticwifi", "mgslalala99", "5.79.16.234", 8090, 0); //Peter's House Connection Details
 
 void setup() {
   // initialize serial:
@@ -101,6 +101,15 @@ void monitor() {
 
 void dataArrived(String data) {
   Serial.println("Data Arrived: " + data);
+  
+  if(data == "left"){
+    left();
+  } else if(data == "right"){
+    right();
+  } else if(data == "fire"){
+    fire();
+  }
+  
   char charBuf[50];
   data.toCharArray(charBuf, 50);
   wifiSetup.client.write(charBuf);
