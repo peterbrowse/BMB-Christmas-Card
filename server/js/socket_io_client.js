@@ -86,11 +86,11 @@ $(document).ready(function() {
 						
 						$('.startButton').click(function() {
 							$('.question-lobby-game').hide();
-							$('span#countdown').unbind('simpleCountDown');
+							$('span#countdown').simpleCountDownStop();
 							answer(true);
 						});
 						
-						$("span#countdown").simpleCountDown({
+						$("span#countdown").simpleCountDownStart({
 							interval:1000,
 							startFrom:10,
 							callBack:function(){

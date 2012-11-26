@@ -46,14 +46,14 @@ var pool = poolModule.Pool({
 
 //tcp socket server
 var tcpServer = net.createServer(function (tcpSocket) {
+	arduinoSocket = null;
 	console.log('Number of connections on port 8090: ' + tcpServer.connections);
 });
 
 tcpServer.on('connection',function(tcpSocket){
 	sendHandShake(tcpSocket);
-	tcpSocket.setKeepAlive(true, 100);
-	tcpSocket.setTimeout(0, tcpTimeoutReported());
-    //console.log(tcpSocket.remoteAddress);
+	//tcpSocket.setKeepAlive(true, 100);
+	tcpSocket.setTimeout(12000, tcpTimeoutReported());
     
     tcpSocket.on('data',function(data){
     	receiveHandShake(data, function(result){
@@ -63,9 +63,10 @@ tcpServer.on('connection',function(tcpSocket){
     			arduinoSocket = tcpSocket;
     			tcpSocket.name = "Arduino";
     			tcpSocket.secure = true;
-    			tcpSocket.setKeepAlive(true, 1000);
+    			//tcpSocket.setKeepAlive(true, 1000);
     			
     			console.log('Passcode received over TCP socket: '+ message);
+    			io.sockets.in('game').emit('problem over');
     		}
     		
     		else if(tcpSocket.secure) {
@@ -76,7 +77,11 @@ tcpServer.on('connection',function(tcpSocket){
     			}
     			
     			else if(message == "pong") {
-    				
+    			}
+    			
+    			else if(message.indexOf("pong") != -1) {
+					message = message.replace("pong","	");
+    				console.log('Command completed: '+ message);
     			}
     			
     			else {
@@ -103,16 +108,31 @@ tcpServer.on('connection',function(tcpSocket){
     }); 
     
     tcpSocket.on('close', function(){
+    	console.log(tcpSocket.name + ' socket disconnected - Launch Error');
+    });
+    
+    tcpSocket.on('end', function(){
     	if(tcpSocket == arduinoSocket) {
     		arduinoSocket = null;
     	};
     	tcpSocket.destroy();
-    	console.log(tcpSocket.name + ' socket disconnected;');
+    	console.log(tcpSocket.name + ' socket disconnected - end');
+    });
+    
+    tcpSocket.on('timeout', function(){
+    	if(tcpSocket == arduinoSocket) {
+    		arduinoSocket = null;
+    	};
+    	tcpSocket.destroy();
     });
 });
 
 tcpServer.on('close', function(){
-	console.log("tcpSocket Disconnected");
+	console.log("TCP Server Disconnected");
+});
+
+tcpServer.on('end', function(){
+	console.log("TCP Server Disconnected");
 });
 
 tcpServer.listen(8090);
@@ -332,5 +352,5 @@ function receiveHandShake(data, result) {
 }
 
 function tcpTimeoutReported() {
-	console.log('tcp timeout reported on tcp socket, ordered continue');
+	console.log('tcp timeout function called or set.');
 }
