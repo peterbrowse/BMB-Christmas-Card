@@ -1,0 +1,78 @@
+/* GENERAL */
+
+.scene-container {
+	width: 100%;
+	height: 439px;
+	position: relative;
+	z-index: 10;
+}
+
+.view {
+	width: 100%;
+	height: 439px;
+	position: relative;
+	z-index: 100;
+	display: block;
+	overflow: hidden;
+}
+
+.red-bg {
+	background: url('/images/interface/bg_red.png') no-repeat;
+}
+
+.blue-bg {
+	background: url('/images/interface/bg_blue.png') no-repeat;
+}
+
+.green-bg {
+	background: url('/images/interface/bg_green.png') no-repeat;
+}
+
+.orange-bg {
+	background: url('/images/interface/bg_orange.png') no-repeat;
+}
+
+.purple-bg {
+	background: url('/images/interface/bg_purple.png') no-repeat;
+}
+
+/* END GENERAL */
+
+/* LOADING */
+
+.loading-kid {
+	margin: auto;
+	height: 439px;
+	top: 219.5px;
+	width: 100%;
+	max-width: 347px;
+	width:expression(document.body.clientWidth > 347? "347px": "auto" );
+	background: url('/images/interface/loading_kid.png') no-repeat center center;
+}
+
+	.loading-kid p {
+		padding-top: 272px;
+	}
+		p, span {
+			text-transform: capitalize;
+			text-align: center;
+			font-size: 35px;
+		}
+		
+.falling_sprout {
+	width: 100%;
+	line-height: 20px;
+	margin: auto;
+	text-align: center;
+	position: absolute;
+	top: -22px;
+	z-index: 101;
+}
+	.falling_sprout img {
+		vertical-align: middle;
+		width: 100%;
+		width: 20px;
+		height: 20px;
+	}
+
+/* END LOADING */

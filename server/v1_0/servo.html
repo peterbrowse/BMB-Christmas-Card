@@ -1,0 +1,346 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Servo Test</title>
+    </head>
+    <style>
+    	#username-error {
+    		display:none;
+    	}
+    	
+    	#chat {
+    		display: none;
+    	}
+    	
+    	#message-form {
+    	}
+    	
+    	#message-input {
+    	}
+    	
+    	.users-holder {
+    	}
+    	
+    	.users-holder h3 {
+    		font-style: italic;
+    		margin-left: 20px;
+    	}
+    	
+    	ul#users {
+    		list-style: none;
+    	}
+    	
+    	.servo-container {
+    		width: 100%;
+    		text-align: center;
+    	}
+    	
+    	.servo {
+    		z-index: 50;
+    		width: 80px;
+    		
+    		margin: 40px auto;
+    	}
+    	
+    	.servo-body {
+    		width: 80px;
+    		height: 160px;
+    		border-radius: 5px;
+    		background-color: #000;
+    		z-index: 51;
+    		box-shadow: 0 2px 2px 2px #808080;
+    		-moz-box-shadow: 0 2px 2px 2px #808080;
+  			-webkit-box-shadow: 0 2px 2px 2px #808080; 
+    	}
+    	
+    	.servo-screw {
+    		height: 10px;
+    		width: 10px;
+    		line-height: 10px;
+    		text-align: center;
+    		font-size: 10px;
+    		background-color: #303030;
+    		color: #575757;
+    		-moz-box-shadow:    0px 0px 1px 1px #ccc;
+  			-webkit-box-shadow: 0px 0px 1px 1px #ccc;
+  			box-shadow:         0px 0px 1px 1px #ccc;
+    		
+    		border-radius: 5px;
+    		position: absolute;
+    	}
+    	
+    	.TL	{margin: 2px;}
+    	.TR {margin-top: 2px; margin-left: 68px;}
+    	.BL {margin: 2px; margin-top: 148px;}
+    	.BR {margin-top: 148px; margin-left: 68px;}
+    	.servo-head-fix {
+    		height: 15px;
+    		width: 15px;
+    		line-height: 15px;
+      		text-align: center;
+      		border-radius: 7.5px;
+      		text-shadow: .1px .2px #808080;
+      		margin-top: 2.5px;
+      		margin-left: 52.5px;
+      		font-size: 15px;
+    	}
+    	
+    	.servo-label {
+    		height: 90px;
+    		width: 60px;
+    		background-color: #474747;
+    		border-radius: 10px;
+    		position: relative;
+    		float: left;
+    		margin-left: 10px;
+    		margin-top: 50px;
+    		-moz-box-shadow: inset 0 0 3px 3px #808080;
+			-webkit-box-shadow: inset 0 0 3px 3px #808080;
+			box-shadow: inset 0 0 3px 3px #808080;
+    	}
+    	
+    	.servo-head {
+    		background-color: #FFFFF2;
+    		position: absolute;
+    		height: 20px;
+    		width: 120px;
+    		border-radius: 50px;
+    		margin-left: -20px;
+    		margin-top: 20px;
+    		
+    		-moz-box-shadow: 0 0 0.5px 0.5px #808080;
+			-webkit-box-shadow: 0 0 0.5px 0.5px #808080;
+			box-shadow: 0 0 0.5px 0.5px #808080;
+			
+			z-index: 100;
+    	}
+    	
+    	.movebutton {
+    		float: left;
+    		position: relative;
+    		width: 100px;
+    		height: 25px;
+    		line-height: 25px;
+    		text-align: center;
+    		background-color: #F00;
+    	}
+    	
+    	.button-container {
+    		margin: auto;
+    		text-align: center;
+    		display: hidden;
+    	}
+    	
+    	.clear {
+    		clear: both;
+    	}
+     	
+    </style>
+
+    <body>
+    	<div class="servo-container">
+    		<div class="servo">
+    			<div class="servo-screw TL">+</div>
+    			<div class="servo-screw TR">+</div>
+    			<div class="servo-screw BL">+</div>
+    			<div class="servo-screw BR">+</div>
+    			<div class="servo-body">
+    				<div class="servo-head">
+    					<div class="servo-screw servo-head-fix">+</div>
+    				</div>
+    				<div class="servo-label"></div>
+    			</div>
+    		</div>
+    	</div>
+    	
+    	<div class="button-container">
+    		<div class="movebutton leftButton" rel="left">Turn Left</div>
+    		<div class="movebutton resetButton" rel="reset">Reset</div>
+    		<div class="movebutton rightButton" rel="right">Turn Right</div>
+    		<div class="clear"></div>
+    	</div>
+    
+    	<div id="landing-page">
+    		<form id="join-form">
+            	<label for="username-input">Choose a username:</label><br />
+            	<input id="username-input" />
+            	<div id="username-error">That username is already in use, please choose something different.</div>
+        	</form>
+    	</div>
+    	
+    	
+
+        <div id="chat">
+            <div id="main">
+                <ul id="messages"></ul>
+                <form id="message-form">
+                    <input id="message-input" />
+                </form>
+            </div>
+            <div class="users-holder">
+            	<h3>User's Online:</h3>
+            	<ul id="users"></ul>
+            </div>
+        </div>
+
+        <script id="userTemplate" type="text/x-jquery-tmpl">
+            <li id="user-${user}">${user}</li>
+        </script>
+
+        <script id="chatMessageTemplate" type="text/x-jquery-tmpl">
+            <li><span class="sender">${sender}</span>: ${message}</li>
+        </script>
+
+        <script id="systemMessageTemplate" type="text/x-jquery-tmpl">
+            <li class="system-message">${message}</li>
+        </script>
+
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+        <script src="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
+		<script type="text/javascript" src="http://5.79.16.234:8080/socket.io/socket.io.js"></script>
+		<script type="text/javascript">
+			function resetServo() {
+				$('.servo-head').animate({  borderSpacing: 90 }, {
+    					step: function(now,fx) {
+      						$(this).css('-webkit-transform','rotate('+now+'deg)');
+      						$(this).css('-moz-transform','rotate('+now+'deg)'); 
+      						$(this).css('transform','rotate('+now+'deg)');  
+    					},
+    					duration:'slow'
+				},'linear');
+			}
+			
+			function servoRight() {
+				$('.servo-head').animate({  borderSpacing: +180 }, {
+    					step: function(now,fx) {
+      						$(this).css('-webkit-transform','rotate('+now+'deg)');
+      						$(this).css('-moz-transform','rotate('+now+'deg)'); 
+      						$(this).css('transform','rotate('+now+'deg)');  
+    					},
+    					duration:'slow'
+				},'linear');
+			}
+			
+			function servoLeft() {
+				$('.servo-head').animate({  borderSpacing: 0 }, {
+    					step: function(now,fx) {
+      						$(this).css('-webkit-transform','rotate('+now+'deg)');
+      						$(this).css('-moz-transform','rotate('+now+'deg)'); 
+      						$(this).css('transform','rotate('+now+'deg)');  
+    					},
+    					duration:'slow'
+					},'linear');
+			}
+			
+			function servoRange() {
+				$('.servo-head').animate({  borderSpacing: +180 }, {
+    					step: function(now,fx) {
+      						$(this).css('-webkit-transform','rotate('+now+'deg)');
+      						$(this).css('-moz-transform','rotate('+now+'deg)'); 
+      						$(this).css('transform','rotate('+now+'deg)');  
+    					},
+    					duration:'slow'
+				},'linear');
+				
+				$('.servo-head').animate({  borderSpacing: 0 }, {
+    					step: function(now,fx) {
+      						$(this).css('-webkit-transform','rotate('+now+'deg)');
+      						$(this).css('-moz-transform','rotate('+now+'deg)'); 
+      						$(this).css('transform','rotate('+now+'deg)');  
+    					},
+    					duration:'slow'
+				},'linear');
+				
+				$('.servo-head').animate({  borderSpacing: 90 }, {
+    					step: function(now,fx) {
+      						$(this).css('-webkit-transform','rotate('+now+'deg)');
+      						$(this).css('-moz-transform','rotate('+now+'deg)'); 
+      						$(this).css('transform','rotate('+now+'deg)');  
+    					},
+    					duration:'slow'
+				},'linear');
+			}
+		
+		</script>
+        <script>
+
+            $(document).ready(function() {
+            	servoRange();
+
+                $("#username-input").focus();
+                var socket = io.connect('http://5.79.16.234:8080');
+                
+                $("#join-form").submit(function(ev) {
+                    ev.preventDefault();
+                    var username = $("#username-input").val();
+                    if (username) {
+
+                        socket.emit("join", username, function(successful, users) {
+                            if (successful) {
+                                $("#landing-page").hide();
+                                $("#chat").show();
+                                $('.button-container').show();
+                                
+                                resetServo();
+                                var message = "Now Joining, " + username;
+                                $("#systemMessageTemplate").tmpl({message: message}).appendTo("#messages");
+
+                                $.each(users, function(i, user) {
+                                    $("#userTemplate").tmpl({user: user}).appendTo("#users");
+                                });
+                                
+                                $("#message-input").focus();
+                                $("#message-form").submit(function(ev) {
+                                    ev.preventDefault();
+                                    socket.emit("chat", $("#message-input").val());
+                                    $("#message-input").val("");
+                                });
+                                
+                                socket.on("chat", function(message) {
+                                    $("#chatMessageTemplate").tmpl(message).appendTo("#messages");
+                                    $("#messages").scrollTop($("#messages").prop("scrollHeight") - $("#messages").height());
+                                });
+                                
+                                socket.on("user-joined", function(user) {
+                                    $("#userTemplate").tmpl({user: user}).appendTo("#users");
+                                    var message ="Now Joining... " + user;
+                                    $("#systemMessageTemplate").tmpl({message: message}).appendTo("#messages");
+                                    $("#messages").scrollTop($("#messages").prop("scrollHeight") - $("#messages").height());
+                                });
+                                
+                                socket.on("user-left", function(user) {
+                                    $("#user-" + user).remove();
+                                    var message = user + " left";
+                                    $("#systemMessageTemplate").tmpl({message: message}).appendTo("#messages");
+                                    $("#messages").scrollTop($("#messages").prop("scrollHeight") - $("#messages").height());
+
+                                });
+                                
+                                $('.movebutton').click(function() {
+                                	socket.emit("instructions", $(this).attr('rel'));
+                                	
+                                	if($(this).attr('rel') === 'left') {
+                                		servoLeft();
+                                	}
+                                	
+                                	else if($(this).attr('rel') === 'reset') {
+                                		resetServo();
+                                	}
+                                	
+                                	else if($(this).attr('rel') === 'right') {
+                                		servoRight();
+                                	}
+
+                                });
+                                
+                            } else {
+                                $("#username-error").show();
+                            }
+                        });
+                    }
+                });                
+                
+            });
+        </script>
+    </body>
+</html>
