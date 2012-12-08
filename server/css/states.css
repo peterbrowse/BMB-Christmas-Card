@@ -1,19 +1,40 @@
 /* GENERAL */
 
+.scene-outter {
+	width: 780px;
+	height: 439px;
+	position: relative;
+	z-index: 10;
+}
+
 .scene-container {
-	width: 100%;
+	width: 780px;
 	height: 439px;
 	position: relative;
 	z-index: 10;
 }
 
 .view {
-	width: 100%;
+	width: 780px;
 	height: 439px;
 	position: relative;
 	z-index: 100;
 	display: block;
 	overflow: hidden;
+	z-index: 100;
+}
+
+#flashHolder {
+	position: absolute;
+	top: 0px;
+	height: 780px;
+	width: 439px;
+}
+
+object#Main {
+	position: absolute;
+	top: 0px;
+	z-index: 1;
 }
 
 .red-bg {
@@ -36,6 +57,45 @@
 	background: url('/images/interface/bg_purple.png') no-repeat;
 }
 
+.clear-bg {
+	background: url('/images/interface/alphapixel.png');
+}
+
+.none-bg {
+	background: none;
+}
+
+/* MUSIC CONTAINER */
+
+.music-container {
+	position: absolute;
+	height: 27px;
+	z-index: 110;
+	bottom: 10px;
+	left: 10px;
+}
+	.music-container p {
+		font-size: 14px;
+		color: #FFF;
+		line-height: 27px;
+		height: 27px;
+		padding-left: 37px;
+		background: url('/images/interface/audio_on.png') no-repeat left;
+		-webkit-touch-callout: none;
+		-webkit-user-select: none;
+		-khtml-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+		cursor: pointer; 
+	}
+	
+		.music-container p.off {
+			background: url('/images/interface/audio_off.png') no-repeat left;
+		}
+
+/* END MUSIC CONTAINER */
+
 /* END GENERAL */
 
 /* LOADING */
@@ -43,18 +103,18 @@
 .loading-kid {
 	margin: auto;
 	height: 439px;
-	top: 219.5px;
-	width: 100%;
-	max-width: 347px;
-	width:expression(document.body.clientWidth > 347? "347px": "auto" );
+	width: 347px;
 	background: url('/images/interface/loading_kid.png') no-repeat center center;
 }
 
 	.loading-kid p {
-		padding-top: 272px;
+		padding-top: 245px;
+		height: 58px;
+		line-height: 58px;
+		vertical-align: middle;
+		text-align: center;
 	}
-		p, span {
-			text-transform: capitalize;
+		.loading-kid span {
 			text-align: center;
 			font-size: 35px;
 		}
@@ -76,3 +136,776 @@
 	}
 
 /* END LOADING */
+
+/* DOORMAN */
+
+.view.closed {
+	text-align: center;
+}
+
+	.view.closed img {
+		margin-top: 8%;
+		width: 671px;
+	}
+
+	.view.closed p {
+		font-size: 25px;
+		font-weight: normal;
+		color: #FFFFFF;
+		line-height: 30px;
+		width: 50%;
+		margin: -25px auto;
+	}
+	
+	.view.pre-open, .view.before-opening-hours {
+		width: 780px;
+		height: 439px;
+	}
+		.view.pre-open p, .view.before-opening-hours p {
+			font-size: 25px;
+			font-weight: normal;
+			color: #FFFFFF;
+			line-height: 30px;
+		}
+	
+		.doorman-logo-closed {
+			z-index: 102;
+			height: 439px;
+			text-align: center;
+			width: 780px;
+			
+			background: url('/images/interface/sprout_shooter_logo.png') no-repeat center center;
+			
+		}
+			.doorman-logo-closed p {
+				padding-top: 87px;
+				padding-bottom: 140px;
+			}
+			
+	.after-opening-hours .white-drop {
+		height: 50px;
+		width: 288px;
+		margin: auto;
+		position: relative;
+		clear: both;
+	}
+		.after-opening-hours .white-drop p {
+			font-size: 27px;
+			text-align: center;
+			width: 228px;
+			line-height: 50px;
+			height: 50px;
+			background-color: #FFF;
+			float: left;
+		}
+		
+		.after-opening-hours .white-drop img {
+			float: left;
+		} 
+
+	.after-opening-hours .today-over-container {
+		position: relative;
+		width: 780px;
+		height: 32px;
+		line-height: 32px;
+		margin-top: 20px;
+		margin-bottom: 10px;
+	}
+		.after-opening-hours .today-over-container p {
+			font-size: 27px;
+			color: #FFF;
+			text-align: center;
+		}
+	
+	.after-opening-hours .come-back {
+		position: relative;
+		margin: auto;
+		width: 760px;
+		line-height: 32px;
+		margin-top: 20px;
+		margin-bottom: 10px;
+	}
+		.after-opening-hours .come-back p {
+			font-size: 27px;
+			color: #FFF;
+			text-align: center;
+		}
+		
+		.after-opening-hours .winners-holder {
+			width: 760px;
+			margin: auto;
+			display: table;
+			padding-top: 20px;
+			padding-bottom: 10px;
+		}
+			.after-opening-hours .winners-holder ul {
+				list-style-type: none;
+				width: 760px;
+			}
+			
+				.winners-holder li {
+					text-align: center;
+					display: inline-block;
+					width: 33%;
+					height: 182px;
+					background: url('/images/interface/prize_winner_hexagon.png') no-repeat center center;
+					*zoom: 1;
+					*display: inline;
+				}
+					.winners-holder li img {
+						width: 36px;
+						height: 42px;
+						padding-top: 16px;
+					}
+				
+					.winners-holder li p {
+					}
+						.winners-holder li p.prize-name {
+							color: #1C75BC;
+							font-size: 130%;
+							line-height: 16px;
+							padding-top: 2px;
+						}
+						
+						.winners-holder li p.player-score {
+							color: #006838;
+							padding-top: 2px;
+							font-size: 20px;
+							line-height: 22px;
+						}
+						
+						.winners-holder li p.player-title {
+							font-size: 13px;
+							height: 30px;
+							line-height: 30px;
+							vertical-align: middle;
+							margin-top: 6px;
+						}
+						
+						.winners-holder li p.player-position {
+							color: #FFF;
+							font-size: 22px;
+							height: 40px;
+							line-height: 40px;
+							vertical-align: middle;
+						}
+	.login-form-holder {
+		width: 348px;
+		height: 439px;
+		background: url('/images/interface/sprout_shooter_logo.png') no-repeat center center;
+		margin: auto;
+	}
+	
+	.login-form-form {
+		width: 348px;
+		height: 439px;
+		background: url('/images/interface/email1.png') no-repeat center center;
+		margin: auto;
+	}
+		.login-form-form form.user-form {
+			width: 289px;
+			margin: auto;
+			text-align: center;
+		}
+	
+			.login-form-form input.user-email {
+				width: 242px;
+				height: 31px;
+				line-height: 31px;
+				vertical-align: middle;
+				text-align: center;
+				background-color: #FFF;
+				color: #90181B;
+				margin: auto;
+				margin-top: 148px;
+				font-weight: bold;
+			}
+			
+			.login-form-form .user-form-submit-text {
+				width: 222px;
+				margin: 10px auto;
+				text-align: center;
+			}
+				.user-form-submit-text p {
+					color: #FFF;
+					font-size: 20px;
+					line-height: 20px;
+					font-weight: 100;
+				}
+			
+			.login-form-form .user-form-submit-button {
+				margin: 76px auto;
+				width: 289px;
+				background: url('/images/interface/red_button_sprite.png') no-repeat 0px 0px;
+				text-align: center;
+				-webkit-touch-callout: none;
+				-webkit-user-select: none;
+				-khtml-user-select: none;
+				-moz-user-select: none;
+				-ms-user-select: none;
+				user-select: none;
+				cursor: pointer; 
+			}
+			.login-form-form .user-form-submit-button:hover {
+				background-position: 0 -83px; 
+			}
+				.user-form-submit-button p {
+					height: 83px;
+					line-height: 78px;
+					font-size: 40px;
+					color: #FFF;
+				}
+
+	.login-form-wrong {
+		width: 348px;
+		height: 439px;
+		background: url('/images/interface/email2.png') no-repeat center center;
+		margin: auto;
+	}
+		.login-form-wrong form.user-form-wrong {
+			width: 289px;
+			margin: auto;
+			text-align: center;
+		}
+	
+			.login-form-wrong input.user-email-wrong {
+				width: 242px;
+				height: 31px;
+				line-height: 31px;
+				vertical-align: middle;
+				text-align: center;
+				background-color: #FFF;
+				color: #91181B;
+				margin: auto;
+				margin-top: 148px;
+				font-weight: bold;
+				border-style: solid;
+				border-width: 2px;
+				border-color: #91181B;
+			}
+			
+			.login-form-wrong .user-form-submit-text-wrong {
+				width: 222px;
+				margin: 10px auto;
+				text-align: center;
+			}
+				.user-form-submit-text-wrong p {
+					color: #91181B;
+					font-size: 20px;
+					line-height: 20px;
+					font-weight: 100;
+				}
+			
+			.login-form-wrong .user-form-submit-button-wrong {
+				margin: 72px auto;
+				width: 289px;
+				background: url('/images/interface/blue_button_sprite.png') no-repeat 0px 0px;
+				text-align: center;
+				-webkit-touch-callout: none;
+				-webkit-user-select: none;
+				-khtml-user-select: none;
+				-moz-user-select: none;
+				-ms-user-select: none;
+				user-select: none;
+				cursor: pointer; 
+			}
+			.login-form-wrong .user-form-submit-button-wrong:hover {
+				background-position: 0px -83px; 
+			}
+				.user-form-submit-button-wrong p {
+					height: 83px;
+					line-height: 53px;
+					font-size: 30px;
+					color: #FFF;
+				}
+
+	
+/* END OF DOORMAN */
+
+/* LOBBY */
+
+.view .lobby {
+
+}
+
+	.global-help {
+		display: none;
+		width: 780px;
+		height: 439px;
+		position: absolute;
+		/*background: url('/images/interface/alphapixel.png'); changed to blue style*/
+		top: 0;
+		left: 0;
+		z-index: 200;
+	}
+	
+	.global-help-button {
+		height: 52px;
+		width: 100px;
+		position: absolute;
+		top: 0;
+		left: 0;
+		-webkit-touch-callout: none;
+		-webkit-user-select: none;
+		-khtml-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+		cursor: pointer;
+	}
+		.global-help-button p {
+			color: #FFF;
+			width: 70px;
+			height: 52px;
+			line-height: 52px;
+			text-align: center;
+			font-size: 15px;
+			float: left;
+			background-color: #961A1D;
+		}
+		
+		.global-help-button img {
+			float: left;
+		}
+	.white-help-button {
+		height: 52px;
+		width: 100px;
+		position: absolute;
+		top: 0;
+		left: 0;
+		-webkit-touch-callout: none;
+		-webkit-user-select: none;
+		-khtml-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+		cursor: pointer;
+	}
+		.white-help-button p {
+			color: #000;
+			width: 70px;
+			height: 52px;
+			line-height: 52px;
+			text-align: center;
+			font-size: 15px;
+			float: left;
+			background-color: #fff;
+		}
+		
+		.white-help-button img {
+			float: left;
+		}
+	.global-help-content {
+		color: #fff;
+		height: 100%;
+		text-align: center;
+	}
+		.global-help-intro {
+			font-size: 27px;
+			width: 60%;
+			margin: 54px auto 5px auto;
+		}
+		.help-text-arrows {
+			float: left;
+			margin-left: 90px;
+			width: 164px;
+			text-align: center;
+		}
+			.help-text-arrows p {
+				font-size: 12px;
+				margin:5px -20px 0;
+			}
+		.help-text-plus {
+			float: left;
+			width: 48px;
+			margin: 58px 27px 0;
+		}
+		.help-text-spacebar {
+			float: left;
+			font-size: 10px;
+			padding-top: 58px;
+			width: 328px;
+			text-align: center;
+		}
+			.help-text-spacebar p {
+				font-size: 12px;
+				margin:17px -20px 50px;
+			}
+		.mailtoSanta-button, .mailtoSanta-button:link, .mailtoSanta-button:hover {
+			clear: both;
+			color: #fff;
+			background-color: #871417;
+			display: inline-block;
+			font-size: 20px;
+			margin: 0 auto;
+			padding: 8px 10px;
+			text-decoration: none;
+		}
+	/* get ready screen, hexagon, lets go triangle */
+		
+	.countdown-hexagon {
+	}
+		.countdown-hexagon  img{
+			position: absolute;
+			left: 290px;
+			top: 70px;
+			z-index: 1;
+		}
+	
+		.countdown-hexagon  .lets-begin{
+			position:absolute;
+			left: 524px;
+			top: 145px;
+			cursor: pointer;
+		}
+			.countdown-hexagon  .lets-begin img{	
+				position:absolute;
+				left:0;
+				top:0;
+			}
+
+			.countdown-hexagon  .lets-begin p{	
+				position:absolute;
+				font-size:15px;
+				color:#fff;
+				left:4px;
+				top:32px;
+				width:40px;
+				z-index:2;
+				text-align: center;
+			}
+		
+		.countdown-hexagon  .countdown-message{	
+			position: absolute;
+			left: 290px;
+			top: 70px;
+			width:198px;
+			color: #fff;
+			font-size: 20px;
+			line-height: 228px;
+			text-align: center;
+			text-shadow: 2px 2px 2px #000;
+			z-index: 2;
+		}
+		
+	/* get ready screen, targets and points scroller */	
+	
+	.target-scroller {
+		position:absolute;
+		top: 317px;
+		left: 0px;/*40*/
+		width: 780px;
+		height: 228px;
+		list-style: none;
+		margin: 0;
+		overflow: hidden;
+	}
+	.target-scroller-items {
+		position: relative;
+	}
+	.target-scroller-items li{
+		display: inline-block;
+		*display: inline;
+		zoom: 1;
+		vertical-align: middle;
+		width: 260px;
+		position:absolute;
+	}
+		.target-scroller li img{
+			width: 27.3%;
+			display: inline-block;
+			*display: inline;
+			zoom: 1;
+			vertical-align: middle;
+		}
+		.target-scroller li span {
+			color: #fff;
+			font-size: 20px;
+			display: inline-block;
+			*display: inline;
+			zoom: 1;
+			vertical-align: middle;
+			padding-left: 18px;
+		}
+	
+		
+	.lobby .global-blue-top-bar {
+		width: 288px;
+		margin: auto;
+		position: relative;
+		clear: both;
+		z-index: 102;
+		-webkit-touch-callout: none;
+		-webkit-user-select: none;
+		-khtml-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+		cursor: pointer;
+	}
+		.lobby .global-blue-top-bar p {
+			text-align: center;
+			color: #FFF;
+			line-height: 52px;
+			font-size: 20px;
+		}
+			.global-blue-top-bar .barContent {
+				width: 228px;
+				height:52px;
+				background-color: #256E9E;
+				text-align: center;
+				float: left;
+				
+			}
+				.buttonOff {
+					cursor: wait !important;
+				}
+					.buttonOff p {
+						font-size: 18px !important;
+					}
+				
+				.barContent p {
+					
+				}
+		
+		.lobby .global-blue-top-bar img.panels {
+			float: left;
+		}
+		
+		.barContentTextHolder {
+			display: inline-block;
+			*display: inline;
+			height: 52px;
+		}
+			.barContentTextHolder p {
+				float: left;
+				margin-left: 5px;
+				margin-right: 5px;
+			}
+		
+		.global-blue-top-bar .countersHolder {
+			display: inline-block;
+			*display: inline;
+			height: 52px;
+		}
+			.countersHolder img {
+				float: left;
+				margin-top:8px;
+				margin-left: 2px;
+				margin-right: 2px;
+			}
+		
+	.lobby .global-logout-button {
+		height: 52px;
+		width: 100px;
+		position: absolute;
+		top: 0px;
+		right: 0px;
+		z-index: 102;
+		-webkit-touch-callout: none;
+		-webkit-user-select: none;
+		-khtml-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+		cursor: pointer;
+	}
+	
+		.global-logout-button p {
+			color: #FFF;
+			width: 70px;
+			height: 52px;
+			line-height: 52px;
+			text-align: center;
+			font-size: 15px;
+			float: left;
+			background-color: #961A1D;
+		}
+		
+		.global-logout-button img {
+			float: left;
+		}
+		
+	.global-close-button {
+		height: 52px;
+		width: 100px;
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 102;
+		-webkit-touch-callout: none;
+		-webkit-user-select: none;
+		-khtml-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+		cursor: pointer;
+	}
+		.global-close-button p {
+			width: 70px;
+			height: 52px;
+			line-height: 52px;
+			text-align: center;
+			font-size: 15px;
+			float: left;
+			background-color: #FFF;
+		}
+		
+		.global-close-button img {
+			float: left;
+		}
+	.global-logout-white-button {
+		height: 52px;
+		width: 100px;
+		position: absolute;
+		top: 0;
+		right: 0;
+		z-index: 102;
+		-webkit-touch-callout: none;
+		-webkit-user-select: none;
+		-khtml-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+		cursor: pointer;
+	}
+		.global-logout-white-button p {
+			width: 70px;
+			height: 52px;
+			line-height: 52px;
+			text-align: center;
+			font-size: 15px;
+			float: left;
+			background-color: #FFF;
+		}
+		
+		.global-logout-white-button img {
+			float: left;
+		}
+		
+	.fullScreenSnowManNext {
+		width: 780px;
+		height: 379px;
+		position: absolute;
+		top: 60px;
+		left: 0;
+		z-index: 101;
+		background: url('/images/interface/queue_message2.png') no-repeat center center;
+	}
+	
+	.fullScreenSnowManWaiting {
+		width: 780px;
+		height: 379px;
+		position: absolute;
+		top: 60px;
+		left: 0;
+		z-index: 101;
+		background: url('/images/interface/queue_message1.png') no-repeat center center;
+	}
+
+/* END LOBBY */
+
+/* GAME OVER */
+
+.game-over-content{
+	position:absolute;
+	top:0;
+	left:0;
+	color:#33669A;
+	text-align:center;
+}
+	.game-over-content .icy-hex{
+		position:absolute;
+		top:50px;
+		left:245px;
+		width:290px;
+		height:335px;
+		line-height:335px;
+		background: url('/images/interface/icy_hexagon.png') no-repeat 0 0;
+	}
+	.game-over-content .icy-hex p{
+		font-size:50px
+	}
+	.game-over-content .santa{
+		position:absolute;
+		top:164px;
+		left:50px;
+		width:134px;
+		height:276px;
+		background: url('/images/interface/gameover_santa.png') no-repeat 0 0;
+	}
+	.game-over-content .penguin{
+		position:absolute;
+		top:292px;
+		left:548px;
+		width:206px;
+		height:147px;
+		background: url('/images/interface/enthusiastic_penguin.png') no-repeat 0 0;
+	}
+	.game-over-content .sprout{
+		position:absolute;
+		top:68px;
+		left:366px;
+		width:44px;
+		height:43px;
+		background: url('/images/interface/sprout.png') no-repeat 0 0;
+	}
+	.game-over-content .arrow-left{
+		position:absolute;
+		top:187px;
+		left:158px;
+		width:35px;
+		height:62px;
+		background: url('/images/interface/arrow_left.png') no-repeat 0 0;
+		cursor:pointer;
+	}
+	.game-over-content .arrow-right{
+		position:absolute;
+		top:187px;
+		left:580px;
+		width:35px;
+		height:62px;
+		background: url('/images/interface/arrow_right.png') no-repeat 0 0;
+		cursor:pointer;
+	}
+	.game-over-content .your-stats{
+		position:absolute;
+		overflow:hidden;
+		top:50px;
+		left:245px;
+		width:290px;
+		height:335px;
+		list-style:none;
+		background: url('/images/interface/off_white_hexagon.png') no-repeat 0 0;
+	}
+	.game-over-content .your-stats .stats {
+		position:absolute;
+		width:1160px;
+		left:0;
+		top:136px;
+	}
+	.game-over-content .your-stats .stats li{
+		float:left;
+		font-size:30px;
+		color:#000;
+		width:290px;
+	}
+	.game-over-content .your-stats .stats li .number{
+		font-size:30px;
+		color:#006838;
+		display:block;
+	}
+	.game-over-content .play-again{
+		position:absolute;
+		top:303px;
+		left:246px;
+		width:286px;
+		height:82px;
+		line-height:52px;
+		background: url('/images/interface/blue_button_sprite.png') no-repeat 0px 0px;
+		color:#fff;
+		font-size:30px;
+	}
+	.game-over-content .play-again:hover{
+		background-position:0 -83px;
+	}

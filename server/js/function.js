@@ -1,6 +1,6 @@
 $('document').ready(function() {
 	/* PRODUCTION SCOPE */
-		
+	
 	setTimeout(function() { 
 		if(navigator.userAgent.match(/iPhone/i)) { 
 				if(window.pageYOffset == 0) { 
@@ -26,7 +26,9 @@ $('document').ready(function() {
 		$('html,body').animate({scrollTop: 0}, {duration: 800});
 	});
 	
-	/*$('.score-cards').cycle({
+	
+	
+	$('.score-cards').cycle({
 		slideExpr: '.card',
 		fx: 'scrollLeft',
 		timeout: 3500,
@@ -40,7 +42,7 @@ $('document').ready(function() {
         	return '<li><div class="slider-navigation-point"></div></li>';
         },
         pauseOnPagerHover: 1
-	});*/
+	});
 	
 	/* END PRODUCTION SCROPE */
 
@@ -198,25 +200,28 @@ function dropSprout(target) {
 	$('.'+target).append('<div class="falling_sprout"><img src="/images/interface/sprout.png" /></div>');
 	
 	$('.falling_sprout').animate({ 
-    	top: "+=155px",
+    	top: "+=155px"
     }, 500, function(){
       	$(this).remove();
     });
-}
-
-$.fn.preloadImages = function(callback) {
-	var sproutDrop = setInterval(function(){dropSprout('loading')},400);
-  	checklist = this.toArray();
-  	this.each(function() {
-    	$('<img>').attr({ src: this }).load(function() {
-     		checklist.remove($(this).attr('src'));
-      		if (checklist.length == 0) {
-      			var loadingDelay = setInterval(function(){
-      				window.clearInterval(sproutDrop)
-      				window.clearInterval(loadingDelay)
-      				callback();
-      			},2000);
-      		}
-    	});
-  	});
 };
+
+String.prototype.maxCharacters = function(limit){
+	if(this.length >= limit) {
+    	return this.substring(0,limit) + "<span class='maxCharacters'>...</span>";
+    }
+    
+    else {
+    	return this;
+    }
+};
+
+//STREAM READY HANDLER
+function streamReady() {
+	$('object#Main').fadeIn(500);
+}
+		
+//STREAM ERROR HANDLER
+function streamError(error) {
+	alert("Don't look at me, it's not my streaming platform. Here is the error: "+error);
+}

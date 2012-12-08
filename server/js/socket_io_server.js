@@ -9,6 +9,7 @@ var ADMIN_TABLE = 'admin';
 var areas = ['lobby','game','finished'];
 var passPhrase = 'santaServer';
 
+var BALLS_FIRED = 0, RUNNING_SCORE = 0, FINAL_SCORE = 0;
 
 var http = require("http")
   , net = require('net')
@@ -17,22 +18,7 @@ var http = require("http")
   , io = require('socket.io')
   , sys = require(process.binding('natives').util ? 'util' : 'sys')
   , server
-  , poolModule = require('generic-pool')
-  , requirejs = require('requirejs');
-  
-requirejs.config({
-    //Use node's special variable __dirname to
-    //get the directory containing this file.
-    //Useful if building a library that will
-    //be used in node but does not require the
-    //use of node outside
-    baseUrl: __dirname,
-
-    //Pass the top-level main.js/index.js require
-    //function to requirejs so that node modules
-    //are loaded relative to the top-level JS file.
-    nodeRequire: require
-}); 
+  , poolModule = require('generic-pool'); 
 
 var httpServer = http.createServer(function(request, response) {
     fs.readFile(__dirname + "/index.html", "utf8", function(error, content) {
@@ -100,6 +86,20 @@ tcpServer.on('connection',function(tcpSocket){
     				console.log('Command completed: '+ message);
     			}
     			
+    			else if(message.indexOf("score") != -1) {
+    				var scoreValueString = message;
+    				var scoreValue = str.split(":");
+    				var scoreValue = scoreValue[1];
+    				console.log(scoreValue);
+    				RUNNING_SCORE++;
+    				io.sockets.in('game').emit('play_sound', 2); 
+    			}
+    			
+    			else if(message.indexOf("fire") != -1) {
+    				BALLS_FIRED++;
+    				io.sockets.in('game').emit('play_sound', 1);
+    			}
+    			
     			else {
     				console.log('Command completed: '+ message);
     			}
@@ -149,15 +149,18 @@ var io = require("socket.io").listen(httpServer);
 
 io.configure(function(){
     io.set('log level', 3);
-    io.set('transports', ['websocket', 'xhr-polling']); //in production switch to XHR only in case memory leaks appearing all the time.
-    io.set('sync disconnect on unload', true);
+    io.set('transports', [	'websocket'
+  							, 'flashsocket'
+  							, 'htmlfile'
+  							, 'xhr-polling'
+  							, 'jsonp-polling']);
     io.set('flash policy port','10843');
     io.set('flash policy server',true);
 });
 
 io.sockets.on("connection", function(socket) {
 
-	socket.on('doorman', function(callback, response, dateObject, stateSelector){
+	socket.on('doorman', function(callback, response, stateSelector, top_3_presents, top_3_scores){
 		var currentDate = new Date().getTime();
 		var currentTimestamp = new Date();
 		var currentTime = currentTimestamp.getHours().zeroPad(2) + currentTimestamp.getMinutes().zeroPad(2);
@@ -191,28 +194,72 @@ io.sockets.on("connection", function(socket) {
     				
     					if(currentDate >= day_one_getTime && currentDate <= day_three_getTime) {
     						if(currentDate >= day_one_getTime && currentDate < day_two_getTime) {
-    							socket.current_day = 1;
+    							socket.emit('current_day', 1);
+    							var current_day = 1;
     						}
     						
     						else if(currentDate >= day_two_getTime && currentDate < day_three_getTime_raw) {
-    							socket.current_day = 2;
+    							socket.emit('current_day', 2);
+    							var current_day = 2;
     						}
     						
     						else {
-    							socket.current_day = 3;
+    							socket.emit('current_day', 3);
+    							var current_day = 3;
     						}
     					
     						if(currentTime > opening_hour && currentTime < closing_hour) {
-    							callback(true,"","","open");
+    							callback(true,"","open");
     						}
     						
     						else {
     							if(currentTime > closing_hour) {
-    								callback(false, "Competition Still Running, however it's currently closed. Please come back between " + opening_hour_ready + " - " + closing_hour_ready, "","after-opening-hours");
+    								pool.acquire(function(err, client) {
+    								if (err) {
+    									console.log(err);
+    								}
+    								else {
+        								client.query('select * from ' + PRESENTS_TABLE + ' where day_available = ?', [ current_day ], function(error, top_3_presents, fields) {
+            						if (error) {
+        								console.log('Error retrieving presents: '+ error);
+        								return false;
+    								}
+    								else {
+    				
+    									pool.acquire(function(err, client) {
+    									if (err) {
+    										console.log(err);
+    									}
+    									else {
+        									client.query('select * from ' + USER_TABLE + ' ORDER BY score_day_' + current_day + ' DESC LIMIT 3', function(error, top_3_scores, fields) {
+            									if (error) {
+        											console.log('Error retrieving presents: '+ error);
+        											return false;
+    											}
+    											else {
+    												if(current_day != 3) {
+    													callback(false, "Come back tomorrow between " + opening_hour_ready + " and " + closing_hour_ready + " for the next game!","after-opening-hours", top_3_presents, top_3_scores);
+    												}
+    								
+    												else {
+    													callback(false, "The games are over for this year but come back next year to see what fun we have created for you!",'after-opening-hours', top_3_presents, top_3_scores);
+    												}
+    											}
+    				
+            									pool.release(client);
+        									});
+    									}
+										});
+    								}
+    				
+            						pool.release(client);
+        							});
+    								}
+									});
     							}
     							
-    							else if(currentTime < closing_hour) {
-    								callback(false, "Competition Still Running, however it's currently closed. Please come back between " + opening_hour_ready + " - " + closing_hour_ready, "","before-opening-hours");
+    							else if(currentTime < opening_hour) {
+    								callback(false, "We're not open for play just yet.<br />Please come back between " + opening_hour_ready + " - " + closing_hour_ready,"before-opening-hours");
     							}
     						}
     					}
@@ -222,11 +269,15 @@ io.sockets.on("connection", function(socket) {
     						dates.push(day_one);
     						dates.push(day_three);
     					
-    						callback(false, "Competition runs from", dates, "pre-open");
+    						callback(false, "Starting" + " " + day_one.getDayName() + " " + day_one.getDate().getOrdinal() + " " + day_one.getMonthName() + " - " + day_three.getDayName() + " " + day_three.getDate().getOrdinal() + " " + day_three.getMonthName(), "pre-open");
     					}
     					
     					else {
-    						callback(false, "Competition is now closed.", "","closed");
+    						callback(
+    							  false
+    							, "The games are over for this year but come back next year to see what fun we have created for you!"
+    							,"closed"
+    						);
     					}		
     				}
     				
@@ -244,7 +295,7 @@ io.sockets.on("connection", function(socket) {
 		if(lobbyUsers == 0 && gameUsers == 0 && finishedUsers == 0) {
 			clients = [];
 		}
-	
+		
         if (clients.indexOf(username) < 0) {
             pool.acquire(function(err, client) {
     			if (err) {
@@ -323,13 +374,14 @@ io.sockets.on("connection", function(socket) {
     })
     
     
-    socket.on('queue_controller', function(action) {
+    socket.on('queue_controller', function(action, callback, queuePosition) {
     	if(action == 'addToQueue') {
     		addToQueue(socket, function(result) {   
-    			if(result) {
+    			if(result == true) {
     				if(objectLength(io.sockets.clients('game')) === 0 && getPosition(queue, socket.username) == 0) {
     					gameStart(socket, 'lobby->game', function(ready){
     						if(ready) {
+    							resetScores();
     							changeRoom(socket, 'game', function(result){
     								if(result){
     									socket.emit('changeRoom', 'game');
@@ -337,7 +389,16 @@ io.sockets.on("connection", function(socket) {
     							});
     						}
     					});
+    					callback(true);
     				}
+    				
+    				else {
+    					callback(false, getPosition(queue, socket.username).zeroPad(2));
+    				}
+    			}
+    			
+    			else {
+    				
     			} 
 			});  
     	}
@@ -347,7 +408,11 @@ io.sockets.on("connection", function(socket) {
     	}
     	
     	else if(action == 'removeFromQueue') {
-    		removeFromQueue(socket);
+    		removeFromQueue(socket, function(removed){
+    			if(removed){
+    				callback(true);
+    			}
+    		});
     	}
     });
     
@@ -378,38 +443,32 @@ io.sockets.on("connection", function(socket) {
     		if (err) {
     		}
     		else {
-        		client.query('select * from ' + USER_TABLE + ' ORDER BY score_day_1 DESC LIMIT 10', function(error, results, fields) {
+        		client.query('select * from ' + USER_TABLE + ' ORDER BY score_day_1 DESC LIMIT 10', function(error, score_day_one, fields) {
             		if (error) {
         				console.log('Error retrieving Top Ten For Day 1: '+ error);
         				return false;
     				}
     				else {
-    					score_day_one = results;
-    					
     					pool.acquire(function(err, client) {
     						if (err) {
     						}
     						else {
-        						client.query('select * from ' + USER_TABLE + ' ORDER BY score_day_2 DESC LIMIT 10', function(error, results, fields) {
+        						client.query('select * from ' + USER_TABLE + ' ORDER BY score_day_2 DESC LIMIT 10', function(error, score_day_two, fields) {
             						if (error) {
         								console.log('Error retrieving Top Ten For Day 2: '+ error);
         								return false;
     								}
     								else {
-    									score_day_two = results;
-    									
     									pool.acquire(function(err, client) {
     										if (err) {
     										}
     										else {
-        										client.query('select * from ' + USER_TABLE + ' ORDER BY score_day_3 DESC LIMIT 10', function(error, results, fields) {
+        										client.query('select * from ' + USER_TABLE + ' ORDER BY score_day_3 DESC LIMIT 10', function(error, score_day_three, fields) {
             										if (error) {
         												console.log('Error retrieving Top Ten For Day 3: '+ error);
         												return false;
     												}
     												else {
-    													score_day_three = results;
-    													
     													callback(true, score_day_one, score_day_two, score_day_three);
     												}
     				
@@ -431,13 +490,22 @@ io.sockets.on("connection", function(socket) {
 		});
     });
     
+    socket.on('gameOver', function(callback, ballsFired, finalScore, userHighestScore, currentPosition){
+    	changeRoom(socket, 'finished', function(result){
+    		if(result){
+    			console.log(socket.username);
+    			//socket.emit('changeRoom', 'finished');
+    		}
+    	});
+    });
+    
 	socket.on("disconnect", function() {
         if (socket.username) {
             clients.splice(clients.indexOf(socket.username), 1);
-            socket.broadcast.emit("user-left", socket.full_name);
             socket.leave(socket.room);
-            removeFromQueue(socket);
-            updateQueue(socket);
+            removeFromQueue(socket, function(removed){
+            	updateQueue(socket);
+            });
         }
     });
 });
@@ -470,6 +538,7 @@ function addToQueue(action, callback) {
 
 function gameStart(socket, question, callback) {
 	socket.emit('userReady', question, function(answer) {
+		resetScores();
 		callback(true);
 	});
 }
@@ -488,10 +557,10 @@ function changeRoom(socket, newRoom, callback) {
 function updateQueue(socket) {
 };
     
-function removeFromQueue(action) {
+function removeFromQueue(action, callback) {
 	if(queue.indexOf(action.username) >= 0) {
     	queue.splice(queue.indexOf(action.username), 1);
-    	//console.log(action.full_name + " removed from queue.");
+    	callback(true);
     }
 }
 
@@ -527,6 +596,10 @@ function receiveHandShake(data, result) {
 	}
 }
 
+function resetScores() {
+	var BALLS_FIRED = 0, RUNNING_SCORE = 0, FINAL_SCORE = 0;
+};
+
 function tcpTimeoutReported() {
 	console.log('tcp timeout function called or set.');
 }
@@ -542,3 +615,35 @@ Date.prototype.zeroPad = function(places) {
 	var zero = places - num.toString().length + 1;
   	return Array(+(zero > 0 && zero)).join("0") + num;
 };
+
+Date.prototype.monthNames = [
+    "January", "February", "March",
+    "April", "May", "June",
+    "July", "August", "September",
+    "October", "November", "December"
+];
+
+Date.prototype.dayNames = [
+	"Monday", "Tuesday", "Wednesday",
+	"Thursday", "Friday", "Saturday",
+	"Sunday"
+];
+
+Number.prototype.getOrdinal = function()
+{
+var n = this % 100;
+var suff = ["th", "st", "nd", "rd", "th"]; // suff for suffix
+var ord= n<21?(n<4 ? suff[n]:suff[0]): (n%10>4 ? suff[0] : suff[n%10]);
+return this + ord;
+}
+
+Date.prototype.getMonthName = function() {
+    return this.monthNames[this.getMonth()];
+};
+Date.prototype.getShortMonthName = function () {
+    return this.getMonthName().substr(0, 3);
+};
+
+Date.prototype.getDayName = function() {
+	return this.dayNames[this.getDay()];
+}

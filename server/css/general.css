@@ -239,8 +239,6 @@ body {
 	margin: 0;
 	padding: 0;
 	border: 0;
-	
-	line-height: 0;
 }
 
 /* HEADER CONTAINER */
@@ -249,6 +247,7 @@ body {
 	width: 100%;
 	position: relative;
 	z-index: 10;
+	overflow: hidden;
 }
 
 	.main-logo {
@@ -264,7 +263,7 @@ body {
 	
 	.view-container {
 		height: 439px;
-		width: 90%;
+		width: 780px;
 		max-width: 780px;
 		width:expression(document.body.clientWidth > 780? "780px": "auto" );
 		margin: auto;
@@ -297,6 +296,8 @@ body {
 			.menu-container ul li {
 				display: inline-block;
 				width: 24%;
+				*zoom: 1;
+				*display: inline;
 			}
 			
 			@media screen and (max-width: 510px){
@@ -355,6 +356,8 @@ body {
 				height: 60px;
 				vertical-align: top !important;
 				margin-bottom: 20px;
+				*zoom: 1;
+				*display: inline;
 			}
 			
 			@media screen and (max-width: 610px) {
@@ -427,6 +430,8 @@ body {
 				display: inline-block;
 				vertical-align: top !important;
 				width: 33%;
+				*zoom: 1;
+				*display: inline;
 			}
 			
 			@media screen and (max-width: 700px) {
@@ -466,6 +471,7 @@ body {
     				position: relative !important;
     				display: block !important;
     				height: auto !important;
+    				*display: inline;
 				}
 				
 					.card-inner {
@@ -495,6 +501,8 @@ body {
 									width: 20%;
 									text-align: center;
 									margin-bottom: 30px;
+									*zoom: 1;
+									*display: inline;
 								}
 								
 									.score-item ul li.user-details {
@@ -543,6 +551,8 @@ body {
 						width: 30px;
 						height: 15px;
 						vertical-align: top !important;
+						*zoom: 1;
+						*display: inline;
 					}
 					
 					.slider-navigation-inner ul li.activeSlide {
@@ -619,6 +629,10 @@ body {
 	}
 
 /* END FOOTER */
+
+.maxCharacters {
+	font-size: 11px !important;
+}
 
 @media screen and (min-width: 2049px){
 }
