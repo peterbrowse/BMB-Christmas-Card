@@ -28,17 +28,10 @@ $('document').ready(function() {
 	
 	
 	
-<<<<<<< HEAD
 	/*$('.score-cards').cycle({
 		slideExpr: '.card',
 		fx: 'scrollHorz',
 		timeout: 5000,
-=======
-	$('.score-cards').cycle({
-		slideExpr: '.card',
-		fx: 'scrollLeft',
-		timeout: 3500,
->>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 		speed: 800,
 		easing: 'linear',
 		slideResize: 0,
@@ -49,7 +42,6 @@ $('document').ready(function() {
         	return '<li><div class="slider-navigation-point"></div></li>';
         },
         pauseOnPagerHover: 1
-<<<<<<< HEAD
 	});*/
 	
 	$('body').on('click','.game-target-controller', function(){
@@ -72,8 +64,6 @@ $('document').ready(function() {
 		$('.terms').slideToggle(800, function(){
 			navigation();
 		});
-=======
->>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 	});
 	
 	/* END PRODUCTION SCROPE */
@@ -96,13 +86,10 @@ $(window).scroll(function () {
 	navigation();
 });
 
-<<<<<<< HEAD
 $(window).load(function() {
 	window.focus();
 });
 
-=======
->>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 
 function resetServo() {
 	$('.servo-head').animate({  borderSpacing: 90 }, {
@@ -255,7 +242,6 @@ String.prototype.maxCharacters = function(limit){
     }
 };
 
-<<<<<<< HEAD
 String.prototype.randColors = function() {
 	var color = ['#009444','#006838','#2bb673'];
 	var word = this;
@@ -295,14 +281,3 @@ String.prototype.randColors = function() {
             setTimeout("changeFocusAgain()",700);
             alert("changeFocus");
      }
-=======
-//STREAM READY HANDLER
-function streamReady() {
-	$('object#Main').fadeIn(500);
-}
-		
-//STREAM ERROR HANDLER
-function streamError(error) {
-	alert("Don't look at me, it's not my streaming platform. Here is the error: "+error);
-}
->>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e

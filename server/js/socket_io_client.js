@@ -4,7 +4,6 @@ var top_3_Fetched = false;
 var currentDay;
 
 $(document).ready(function() {
-<<<<<<< HEAD
 	$('.card-two').hide();
 	$('.card-three').hide();
 
@@ -13,18 +12,12 @@ $(document).ready(function() {
 		$('.view-container').css('width','100%');		
 	}
 	else {
-=======
->>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 				loading_screen('connecting');
 				
 				
 				if(typeof io == 'undefined') {
 					$('.server_contact-container').show();
-<<<<<<< HEAD
 					window.setTimeout('location.reload()', 10000);
-=======
-					window.setTimeout('location.reload()', 3000);
->>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 				}
 				
 				else {
@@ -33,21 +26,13 @@ $(document).ready(function() {
       						$(this).jPlayer("setMedia", {
        		 					mp3: "/audio/Sleigh-Ride.mp3",
        		 					wav: "/audio/Sleigh-Ride.wav"
-<<<<<<< HEAD
       						}).jPlayer("play");
-=======
-      						});//.jPlayer("play");
->>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
     					},
    						supplied: "mp3, wav",
     					solution: "html, flash",
     					loop: true,
-<<<<<<< HEAD
     					wmode:"window",
     					volume: 0.2
-=======
-    					wmode:"window"
->>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
   					});
   					$('.fire-file').jPlayer( {
     					ready: function () {
@@ -71,7 +56,6 @@ $(document).ready(function() {
     					solution: "html, flash",
     					wmode:"window"
   					});
-<<<<<<< HEAD
   					$('.bell-file').jPlayer( {
   						ready: function () {
   							$(this).jPlayer("setMedia", {
@@ -83,31 +67,18 @@ $(document).ready(function() {
   						solution: "html, flash",
   						wmode: "window"
   					});
-=======
->>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
   					audio_player();
 				}
 				
 				var socket = io.connect('http://5.79.16.234:8080', {
   						'transports':[
    							'websocket'
-<<<<<<< HEAD
   							, 'flashsocket'],
   						'max reconnection attempts':3000
 				});
 				
 				socket.on('connect',function(){
 					$('.error_message').remove();
-=======
-  							, 'flashsocket'
-  							, 'htmlfile'
-  							, 'xhr-polling'
-  							, 'jsonp-polling'],
-  						'connect timeout': 3000
-				});
-				
-				socket.on('connect',function(){
->>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 					socket.emit('doorman', function(callback, response, stateSelector, top_3_presents, top_3_scores) {
 						if(callback) {
 							loading_screen('loading');
@@ -167,13 +138,8 @@ $(document).ready(function() {
 								,'/images/interface/plus_symbol.png'
 								,'/images/interface/polar_flash.png'
 								,'/images/interface/prize_winner_hexagon.png'
-<<<<<<< HEAD
 								,'/images/interface/frosty1.png'
 								,'/images/interface/frosty2.png'
-=======
-								,'/images/interface/queue_message1.png'
-								,'/images/interface/queue_message2.png'
->>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 								,'/images/interface/raygun_big.png'
 								,'/images/interface/raygun_small_grey.png'
 								,'/images/interface/red_button_sprite.png'
@@ -184,10 +150,7 @@ $(document).ready(function() {
 								,'/images/interface/alphapixel.png'
 								,'/images/interface/email1.png'
 								,'/images/interface/email2.png'
-<<<<<<< HEAD
 								,'/images/interface/boil.png'
-=======
->>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 							],function()
 							{
 								var loadingDelayImage = setInterval(function(){
@@ -196,14 +159,10 @@ $(document).ready(function() {
 									login_screen('intro','clear');
 									var formIntroductionDelay = setInterval(function(){
 										window.clearInterval(formIntroductionDelay);
-<<<<<<< HEAD
 										document.body.tabIndex = 0;
 										document.body.focus();
 										login_screen('form','clear');
    										$('.scene-container').attr("tabindex",1).focus();
-=======
-										login_screen('form','clear');
->>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 										$('.user-email').val();
    										$('.user-email').focus();
             							$('.user-form-submit-button').click(function() {
@@ -214,7 +173,6 @@ $(document).ready(function() {
                    								if (username) {
 													socket.emit("join", username, function(successful, users) {
                             							if (successful) {
-<<<<<<< HEAD
                                 							pre_game_help_screen();
                             								var helpfulDelay = setInterval(function(){
                             									window.clearInterval(helpfulDelay);
@@ -222,10 +180,6 @@ $(document).ready(function() {
                             										lobby_screen();
                             									});
                             								} , 3500);
-=======
-                                							lobby_screen();
-                                							socket.username = username;
->>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
                             							}
                             						
                             							else {
@@ -255,7 +209,6 @@ $(document).ready(function() {
 							
 							else if(stateSelector == 'before-opening-hours') {
 								doorman_screen('before-opening-hours',response,'green');
-<<<<<<< HEAD
 								var doormanCheck = setInterval(function(){
                             		socket.emit('doorman', function(callback){
                             			if(callback){
@@ -264,8 +217,6 @@ $(document).ready(function() {
                             			}
                             		});					
                             	} , 30000);
-=======
->>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 							}
 							
 							else if(stateSelector == 'after-opening-hours') {
@@ -348,7 +299,6 @@ $(document).ready(function() {
 							}
 						}
 					});
-<<<<<<< HEAD
 				});
 				
 				socket.on('updatePositions', function() {
@@ -380,14 +330,11 @@ $(document).ready(function() {
 				
 				socket.on('whose_playing', function(nameString) {
 					$('.lobby').append('<div class="whose-playing"><img src="/images/interface/corner_left_bottom_white.png" /><div class="whose-playing-text"><p class="nowPlaying">Now playing:</p><p class="userString">'+nameString+'</p></div><img src="/images/interface/corner_right_bottom_white.png" /></div>');
-=======
->>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 				});
 				
 				socket.on('cheat', function(){
 				});
 				
-<<<<<<< HEAD
 				socket.on('enterGame', function(topScore){
 					$('html,body').animate({scrollTop: 83}, {duration: 800});
 					game_screen(topScore);
@@ -410,27 +357,6 @@ $(document).ready(function() {
 							});	
 						}
 					});
-=======
-				socket.on('changeRoom', function(room){
-					if(room === 'game') {
-						
-						$('.scene-container').empty();
-						$('.scene-container').html('<div class="game-room"><h1><span class="timeLeft" style="font-size: 30px;">--</span><h1/></div>');
-						
-						$("span.timeLeft").simpleCountDownStart({
-							interval:1000,
-							startFrom:25,
-							callBack:function(){
-								socket.emit('gameOver',function(successful, ballsFired, finalScore, userHighestScore, currentPosition) {
-									if(successful){
-										$('.scene-container').empty();
-										$('.scene-container').html('<div class="game-room"><h1 style="font-size: 30px;"></h1></div>');
-									}
-								});	
-							}
-						});
-					}
->>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 				});
 				
 				socket.on('userReady', function(question, answer) {
@@ -440,20 +366,14 @@ $(document).ready(function() {
 							interval:1000,
 							startFrom:30,
 							callBack:function(){
-<<<<<<< HEAD
 								$('.bell-file').jPlayer('stop');
-=======
->>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 								answer(true);
 							}
 						});
 						
 						$('.lets-begin').click(function(){
 							$('.countdown-message').userReadyCountDownStop();
-<<<<<<< HEAD
 							$('.bell-file').jPlayer('stop');
-=======
->>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 							answer(true);
 						});			
 					}
@@ -494,7 +414,6 @@ $(document).ready(function() {
 								$target3.find('li.user-score').text($scoreString);
 							}
 						}
-<<<<<<< HEAD
 					}
 				});
 				
@@ -545,48 +464,6 @@ $(document).ready(function() {
 				socket.on('disconnect',function() {
 					disconnect_screen();
 					window.setTimeout('location.reload()', 10000);
-=======
-					}
-				});
-				
-				socket.on('current_day', function(day) {
-					currentDay = day;
-				});
-				
-				socket.on('error_messenger', function(error_code){
-					switch (error_code)
-					{
-						case 0:
-  							error_message="This email address is already signed in.";
-  							login_screen('wrong','clear',error_message);
-  							break;
-						case 1:
- 							error_message="Oops, please check try and again.";
- 							login_screen('wrong','clear',error_message);
-  							break;
-						case 2:
- 							error_message="You've already won a prize, sit back and enjoy the show.";
-  							break;
-					}
-				});
-				
-				socket.on('play_sound', function(sound){
-					switch (sound) {
-						case 0:
-							//play user ready bell sound
-							break;
-						case 1:
-       						$('.fire-file').jPlayer("play");
-       						break;
-       					case 2:
-       						$('.score-fire').jPlayer("play");
-       						break;
-					}
-				});
-				
-				socket.on('disconnect',function() {
-					alert('Launch server disconnect');
->>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 				});
 				
 				//ADD TO QUEUE
@@ -606,7 +483,6 @@ $(document).ready(function() {
 							
 							$('.global-blue-top-bar .barContent').html($html);
 							$('.global-blue-top-bar').addClass('buttonOff');
-<<<<<<< HEAD
 							
 							socket.emit('somebodyPlaying', function(callback, whosePlaying) {
                             	if(callback){
@@ -614,9 +490,6 @@ $(document).ready(function() {
                             	}
                             });
 							if(queuePosition == 02) {
-=======
-							if(queuePosition == 01) {
->>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 								$('.lobby').append('<div class="fullScreenSnowManNext"></div>');
 								$('.fullScreenSnowManNext').delay(3000).fadeOut(800);
 							}
@@ -629,7 +502,6 @@ $(document).ready(function() {
 					});
 				});
 				
-<<<<<<< HEAD
 				//PLAY AGAIN TO QUEUE
 				$('body').on('click','.play-again', function() {
 					socket.emit('doorman', function(stillOpen){
@@ -678,16 +550,10 @@ $(document).ready(function() {
 					});
 				});
 				
-=======
->>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 				//LEAVE QUEUE-white
 				$('body').on('click','.global-logout-white-button', function(removed) {
 					socket.emit('queue_controller', 'removeFromQueue', function(removed) {
 						if(removed) {
-<<<<<<< HEAD
-=======
-							socket.emit('queue_controller', 'updateQueue');
->>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 						}
 					});
 					window.setTimeout('location.reload()');
@@ -697,31 +563,19 @@ $(document).ready(function() {
 				$('body').on('click','.global-logout-button',function(removed) {
 					socket.emit('queue_controller', 'removeFromQueue', function(removed) {
 						if(removed) {
-<<<<<<< HEAD
-=======
-							socket.emit('queue_controller', 'updateQueue');
->>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 						}
 					});
 					window.setTimeout('location.reload()');
 				});
-<<<<<<< HEAD
-=======
-				
-				
->>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
                 
                 $('body').on('click','.user-form-submit-button-wrong', function() {
             		$('.user-form-submit-button-wrong').submit();
             	});
             	
-<<<<<<< HEAD
             	$('body').on('click','.error-button-holder', function(){
             		$('.error_message').fadeOut(400);
             	});
             	
-=======
->>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
             	$("body").on('submit', function(ev) {
                 	ev.preventDefault();
                     var userHolder = $('.user-email-wrong');
@@ -729,7 +583,6 @@ $(document).ready(function() {
                    	if (username) {
 						socket.emit("join", username, function(successful, users) {
                         	if (successful) {
-<<<<<<< HEAD
                             	pre_game_help_screen();
                             		var helpfulDelay = setInterval(function(){
                             		window.clearInterval(helpfulDelay);
@@ -746,14 +599,6 @@ $(document).ready(function() {
                             										
                             else {
                             	userHolder.val();
-=======
-                            	lobby_screen();
-                                socket.username = username;
-                            }
-                            										
-                            else {
-                            	userHolder.val(username);
->>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
                             	userHolder.focus();
                             }
                        	});
@@ -763,7 +608,6 @@ $(document).ready(function() {
                     	userHolder.focus();
                     }
                 });
-<<<<<<< HEAD
                 
                 $('.html, body').keydown(function(e){
                 	if (e.keyCode == 32) {
@@ -779,25 +623,10 @@ $(document).ready(function() {
 					else {
 						if (e.keyCode == 37) { 
 							e.preventDefault();
-=======
-	
-				$(document).keydown(function(e){
-					if(e.keyCode == 32) {
-						e.preventDefault();
-					}
-				
-					if( !$('.game-room').is(':visible') ) {
-					}
-					else {
-						if (e.keyCode == 37) { 
-							e.preventDefault();
-       						socket.emit("instructions","left");
->>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
        						return false;
     					}
     	
     					else if (e.keyCode == 39) {
-<<<<<<< HEAD
     						e.preventDefault();
        						return false;
     					}
@@ -849,19 +678,6 @@ $(document).ready(function() {
     						return false;
     					}
     					
-=======
-    						e.preventDefault(); 
-       						socket.emit("instructions","right");
-       						return false;
-    					}
-    	
-    					else if (e.keyCode == 32) {
-    						e.preventDefault(); 
-       						socket.emit("instructions","fire");
-       						return false;
-    					}
-    					
->>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
     					else if(e.keyCode == 38) {
     						e.preventDefault();
     						return false; 
@@ -873,14 +689,6 @@ $(document).ready(function() {
     					}
 					}
 					
-<<<<<<< HEAD
 				});
 	}
-=======
-					if(e.keyCode == 27){
-            			return false;
-       				}
-				});
-
->>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 });

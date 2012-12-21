@@ -44,51 +44,7 @@
 						
     					<!--<script class="lobby-template" type="text/x-handebars-template">-->
 						<!-- START GAME OVER SCREEN-->
-<<<<<<< HEAD
     						
-=======
-    						<div class="view game-over blue-bg">
-    							<div class="white-help-button">
-    								<p>Help!</p>
-    								<img src="/images/interface/corner_left_white.png" />
-    							</div>
-    							<div class="global-help blue-bg">
-    								<div class="global-close-button">
-    									<p>Close</p>
-    									<img src="/images/interface/corner_left_white.png" />
-    								</div>
-    								<div class="global-logout-white-button">
-    									<img src="/images/interface/corner_right_white.png" />
-    									<p>Log Out</p>
-    								</div>
-    								<div class="global-help-content">
-    									<p class="global-help-intro">You have 60 seconds to score as many points as possible!</p>
-										<div class="help-text-arrows">
-											<img src="/images/instructions/arrow_keys.png" />
-											<p>Use the directional arrows on your keyboard to aim your sprouts before you...</p>
-										</div>
-										<img src="/images/interface/plus_symbol.png" class="help-text-plus" />
-										<div class="help-text-spacebar">
-											<img src="/images/instructions/spacebar.png" />
-											<p>...Hit the space bar to SHOOT!</p>
-										</div>			
-										<a href="mailto:santa@bmbagency.com" class="mailtoSanta-button">santa@bmbagency.com</a>
-    								</div>
-    							</div>
-
-    							<div class="game-over-content">
-									<div class="icy-hex">
-										<p>Game over</p>
-									</div>
-									<div class="santa"></div>
-    							</div>
-
-    							<div class="global-logout-white-button">
-    								<img src="/images/interface/corner_right_white.png" />
-    								<p>Log Out</p>
-    							</div>
-    						</div>
->>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
     					<!--</script>-->
 						<!-- END GAME OVER SCREEN-->
     					</div><!-- end .scene-container-->
