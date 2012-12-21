@@ -4,15 +4,20 @@
 	width: 780px;
 	height: 439px;
 	position: relative;
+<<<<<<< HEAD
 	z-index: 9999;
 	margin: auto;
 	margin-bottom: 40px;
+=======
+	z-index: 10;
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 }
 
 .scene-container {
 	width: 780px;
 	height: 439px;
 	position: relative;
+<<<<<<< HEAD
 	z-index: 10000;
 	outline: none !important;
 }
@@ -49,6 +54,32 @@
 	overflow: hidden;
 	z-index: 100;
 	outline: none !important;
+=======
+	z-index: 10;
+}
+
+.view {
+	width: 780px;
+	height: 439px;
+	position: relative;
+	z-index: 100;
+	display: block;
+	overflow: hidden;
+	z-index: 100;
+}
+
+#flashHolder {
+	position: absolute;
+	top: 0px;
+	height: 780px;
+	width: 439px;
+}
+
+object#Main {
+	position: absolute;
+	top: 0px;
+	z-index: 1;
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 }
 
 .red-bg {
@@ -84,7 +115,11 @@
 .music-container {
 	position: absolute;
 	height: 27px;
+<<<<<<< HEAD
 	z-index: 99999;
+=======
+	z-index: 110;
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 	bottom: 10px;
 	left: 10px;
 }
@@ -95,7 +130,10 @@
 		height: 27px;
 		padding-left: 37px;
 		background: url('/images/interface/audio_on.png') no-repeat left;
+<<<<<<< HEAD
 		border-radius: 1px;
+=======
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 		-webkit-touch-callout: none;
 		-webkit-user-select: none;
 		-khtml-user-select: none;
@@ -107,6 +145,7 @@
 	
 		.music-container p.off {
 			background: url('/images/interface/audio_off.png') no-repeat left;
+<<<<<<< HEAD
 			border-radius: 1px;
 		}
 		
@@ -176,6 +215,10 @@
 		}
 
 
+=======
+		}
+
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 /* END MUSIC CONTAINER */
 
 /* END GENERAL */
@@ -187,7 +230,10 @@
 	height: 439px;
 	width: 347px;
 	background: url('/images/interface/loading_kid.png') no-repeat center center;
+<<<<<<< HEAD
 	border-radius: 1px;
+=======
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 }
 
 	.loading-kid p {
@@ -222,10 +268,13 @@
 
 /* DOORMAN */
 
+<<<<<<< HEAD
 .form {
 	z-index: 10001;
 }
 
+=======
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 .view.closed {
 	text-align: center;
 }
@@ -262,7 +311,10 @@
 			width: 780px;
 			
 			background: url('/images/interface/sprout_shooter_logo.png') no-repeat center center;
+<<<<<<< HEAD
 			border-radius: 1px;
+=======
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 			
 		}
 			.doorman-logo-closed p {
@@ -337,7 +389,10 @@
 					width: 33%;
 					height: 182px;
 					background: url('/images/interface/prize_winner_hexagon.png') no-repeat center center;
+<<<<<<< HEAD
 					border-radius: 1px;
+=======
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 					*zoom: 1;
 					*display: inline;
 				}
@@ -365,42 +420,64 @@
 						
 						.winners-holder li p.player-title {
 							font-size: 13px;
+<<<<<<< HEAD
 							height: 31px;
 							line-height: 31px;
 							vertical-align: middle;
 							margin-top: 4px;
+=======
+							height: 30px;
+							line-height: 30px;
+							vertical-align: middle;
+							margin-top: 6px;
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 						}
 						
 						.winners-holder li p.player-position {
 							color: #FFF;
 							font-size: 22px;
 							height: 40px;
+<<<<<<< HEAD
 							line-height: 30px;
+=======
+							line-height: 40px;
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 							vertical-align: middle;
 						}
 	.login-form-holder {
 		width: 348px;
 		height: 439px;
 		background: url('/images/interface/sprout_shooter_logo.png') no-repeat center center;
+<<<<<<< HEAD
 		border-radius: 1px;
 		margin: auto;
 		z-index: 10001;
+=======
+		margin: auto;
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 	}
 	
 	.login-form-form {
 		width: 348px;
 		height: 439px;
 		background: url('/images/interface/email1.png') no-repeat center center;
+<<<<<<< HEAD
 		border-radius: 1px;
 		margin: auto;
 		
 		z-index: 10002;
+=======
+		margin: auto;
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 	}
 		.login-form-form form.user-form {
 			width: 289px;
 			margin: auto;
 			text-align: center;
+<<<<<<< HEAD
 			z-index: 10003;
+=======
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 		}
 	
 			.login-form-form input.user-email {
@@ -414,21 +491,30 @@
 				margin: auto;
 				margin-top: 148px;
 				font-weight: bold;
+<<<<<<< HEAD
 				z-index: 10003;
+=======
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 			}
 			
 			.login-form-form .user-form-submit-text {
 				width: 222px;
 				margin: 10px auto;
 				text-align: center;
+<<<<<<< HEAD
 				z-index: 10003;
+=======
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 			}
 				.user-form-submit-text p {
 					color: #FFF;
 					font-size: 20px;
 					line-height: 20px;
 					font-weight: 100;
+<<<<<<< HEAD
 					z-index: 10003;
+=======
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 				}
 			
 			.login-form-form .user-form-submit-button {
@@ -442,18 +528,26 @@
 				-moz-user-select: none;
 				-ms-user-select: none;
 				user-select: none;
+<<<<<<< HEAD
 				cursor: pointer;
 				z-index: 10003; 
 			}
 			.login-form-form .user-form-submit-button:hover {
 				background-position: 0 -83px; 
 				
+=======
+				cursor: pointer; 
+			}
+			.login-form-form .user-form-submit-button:hover {
+				background-position: 0 -83px; 
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 			}
 				.user-form-submit-button p {
 					height: 83px;
 					line-height: 78px;
 					font-size: 40px;
 					color: #FFF;
+<<<<<<< HEAD
 					z-index: 10004;
 				}
 
@@ -462,18 +556,28 @@
 	z-index: 10001;
 }
 
+=======
+				}
+
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 	.login-form-wrong {
 		width: 348px;
 		height: 439px;
 		background: url('/images/interface/email2.png') no-repeat center center;
 		margin: auto;
+<<<<<<< HEAD
 		z-index: 10002;
+=======
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 	}
 		.login-form-wrong form.user-form-wrong {
 			width: 289px;
 			margin: auto;
 			text-align: center;
+<<<<<<< HEAD
 			z-index: 10002;
+=======
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 		}
 	
 			.login-form-wrong input.user-email-wrong {
@@ -490,21 +594,30 @@
 				border-style: solid;
 				border-width: 2px;
 				border-color: #91181B;
+<<<<<<< HEAD
 				z-index: 10003;
+=======
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 			}
 			
 			.login-form-wrong .user-form-submit-text-wrong {
 				width: 222px;
 				margin: 10px auto;
 				text-align: center;
+<<<<<<< HEAD
 				z-index: 10003;
+=======
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 			}
 				.user-form-submit-text-wrong p {
 					color: #91181B;
 					font-size: 20px;
 					line-height: 20px;
 					font-weight: 100;
+<<<<<<< HEAD
 					z-index: 10003;
+=======
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 				}
 			
 			.login-form-wrong .user-form-submit-button-wrong {
@@ -518,8 +631,12 @@
 				-moz-user-select: none;
 				-ms-user-select: none;
 				user-select: none;
+<<<<<<< HEAD
 				cursor: pointer;
 				z-index: 10003; 
+=======
+				cursor: pointer; 
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 			}
 			.login-form-wrong .user-form-submit-button-wrong:hover {
 				background-position: 0px -83px; 
@@ -529,7 +646,10 @@
 					line-height: 53px;
 					font-size: 30px;
 					color: #FFF;
+<<<<<<< HEAD
 					z-index: 10003;
+=======
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 				}
 
 	
@@ -537,8 +657,13 @@
 
 /* LOBBY */
 
+<<<<<<< HEAD
 .lobby {
 	z-index: 10001;
+=======
+.view .lobby {
+
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 }
 
 	.global-help {
@@ -553,7 +678,12 @@
 	}
 	
 	.global-help-button {
+<<<<<<< HEAD
 		height: 32px;
+=======
+		height: 52px;
+		width: 100px;
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 		position: absolute;
 		top: 0;
 		left: 0;
@@ -564,6 +694,7 @@
 		-ms-user-select: none;
 		user-select: none;
 		cursor: pointer;
+<<<<<<< HEAD
 		z-index: 105;
 	}
 		.global-help-button p {
@@ -571,6 +702,14 @@
 			width: 82px;
 			height: 32px;
 			line-height: 32px;
+=======
+	}
+		.global-help-button p {
+			color: #FFF;
+			width: 70px;
+			height: 52px;
+			line-height: 52px;
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 			text-align: center;
 			font-size: 15px;
 			float: left;
@@ -579,11 +718,18 @@
 		
 		.global-help-button img {
 			float: left;
+<<<<<<< HEAD
 			height: 32px;
 			width: 18px;
 		}
 	.white-help-button {
 		height: 32px;
+=======
+		}
+	.white-help-button {
+		height: 52px;
+		width: 100px;
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 		position: absolute;
 		top: 0;
 		left: 0;
@@ -597,9 +743,15 @@
 	}
 		.white-help-button p {
 			color: #000;
+<<<<<<< HEAD
 			width: 82px;
 			height: 32px;
 			line-height: 32px;
+=======
+			width: 70px;
+			height: 52px;
+			line-height: 52px;
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 			text-align: center;
 			font-size: 15px;
 			float: left;
@@ -608,8 +760,11 @@
 		
 		.white-help-button img {
 			float: left;
+<<<<<<< HEAD
 			height: 32px;
 			width: 18px;
+=======
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 		}
 	.global-help-content {
 		color: #fff;
@@ -628,7 +783,11 @@
 			text-align: center;
 		}
 			.help-text-arrows p {
+<<<<<<< HEAD
 				font-size: 15px;
+=======
+				font-size: 12px;
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 				margin:5px -20px 0;
 			}
 		.help-text-plus {
@@ -644,7 +803,11 @@
 			text-align: center;
 		}
 			.help-text-spacebar p {
+<<<<<<< HEAD
 				font-size: 15px;
+=======
+				font-size: 12px;
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 				margin:17px -20px 50px;
 			}
 		.mailtoSanta-button, .mailtoSanta-button:link, .mailtoSanta-button:hover {
@@ -737,7 +900,10 @@
 		.target-scroller li span {
 			color: #fff;
 			font-size: 20px;
+<<<<<<< HEAD
 			line-height: 1.4;
+=======
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 			display: inline-block;
 			*display: inline;
 			zoom: 1;
@@ -812,8 +978,14 @@
 				margin-right: 2px;
 			}
 		
+<<<<<<< HEAD
 	.global-logout-button {
 		height: 32px;
+=======
+	.lobby .global-logout-button {
+		height: 52px;
+		width: 100px;
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 		position: absolute;
 		top: 0px;
 		right: 0px;
@@ -829,9 +1001,15 @@
 	
 		.global-logout-button p {
 			color: #FFF;
+<<<<<<< HEAD
 			width: 82px;
 			height: 32px;
 			line-height: 32px;
+=======
+			width: 70px;
+			height: 52px;
+			line-height: 52px;
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 			text-align: center;
 			font-size: 15px;
 			float: left;
@@ -840,6 +1018,7 @@
 		
 		.global-logout-button img {
 			float: left;
+<<<<<<< HEAD
 			height: 32px;
 			width: 18px;
 		}
@@ -850,6 +1029,17 @@
 		top: 0;
 		left: 0;
 		z-index: 103;
+=======
+		}
+		
+	.global-close-button {
+		height: 52px;
+		width: 100px;
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 102;
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 		-webkit-touch-callout: none;
 		-webkit-user-select: none;
 		-khtml-user-select: none;
@@ -859,9 +1049,15 @@
 		cursor: pointer;
 	}
 		.global-close-button p {
+<<<<<<< HEAD
 			width: 82px;
 			height: 32px;
 			line-height: 32px;
+=======
+			width: 70px;
+			height: 52px;
+			line-height: 52px;
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 			text-align: center;
 			font-size: 15px;
 			float: left;
@@ -870,11 +1066,18 @@
 		
 		.global-close-button img {
 			float: left;
+<<<<<<< HEAD
 			height: 32px;
 			width: 18px;
 		}
 	.global-logout-white-button {
 		height: 32px;
+=======
+		}
+	.global-logout-white-button {
+		height: 52px;
+		width: 100px;
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 		position: absolute;
 		top: 0;
 		right: 0;
@@ -888,9 +1091,15 @@
 		cursor: pointer;
 	}
 		.global-logout-white-button p {
+<<<<<<< HEAD
 			width: 82px;
 			height: 32px;
 			line-height: 32px;
+=======
+			width: 70px;
+			height: 52px;
+			line-height: 52px;
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 			text-align: center;
 			font-size: 15px;
 			float: left;
@@ -899,8 +1108,11 @@
 		
 		.global-logout-white-button img {
 			float: left;
+<<<<<<< HEAD
 			height: 32px;
 			width: 18px;
+=======
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 		}
 		
 	.fullScreenSnowManNext {
@@ -910,7 +1122,11 @@
 		top: 60px;
 		left: 0;
 		z-index: 101;
+<<<<<<< HEAD
 		background: url('/images/interface/frosty1.png') no-repeat center center;
+=======
+		background: url('/images/interface/queue_message2.png') no-repeat center center;
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 	}
 	
 	.fullScreenSnowManWaiting {
@@ -920,6 +1136,7 @@
 		top: 60px;
 		left: 0;
 		z-index: 101;
+<<<<<<< HEAD
 		background: url('/images/interface/frosty2.png') no-repeat center center;
 	}
 	
@@ -1204,6 +1421,13 @@
 
 /* END PRE-GAME HELP */
 
+=======
+		background: url('/images/interface/queue_message1.png') no-repeat center center;
+	}
+
+/* END LOBBY */
+
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 /* GAME OVER */
 
 .game-over-content{
@@ -1221,6 +1445,7 @@
 		height:335px;
 		line-height:335px;
 		background: url('/images/interface/icy_hexagon.png') no-repeat 0 0;
+<<<<<<< HEAD
 		border-radius: 1px;
 	}
 	.game-over-content .icy-hex p{
@@ -1232,6 +1457,11 @@
 		-ms-user-select: none;
 		user-select: none;
 		cursor: default;
+=======
+	}
+	.game-over-content .icy-hex p{
+		font-size:50px
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 	}
 	.game-over-content .santa{
 		position:absolute;
@@ -1240,16 +1470,26 @@
 		width:134px;
 		height:276px;
 		background: url('/images/interface/gameover_santa.png') no-repeat 0 0;
+<<<<<<< HEAD
 		border-radius: 1px;
 	}
 	.game-over-content .penguin{
 		position:absolute;
 		top:293px;
+=======
+	}
+	.game-over-content .penguin{
+		position:absolute;
+		top:292px;
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 		left:548px;
 		width:206px;
 		height:147px;
 		background: url('/images/interface/enthusiastic_penguin.png') no-repeat 0 0;
+<<<<<<< HEAD
 		border-radius: 1px;
+=======
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 	}
 	.game-over-content .sprout{
 		position:absolute;
@@ -1258,7 +1498,10 @@
 		width:44px;
 		height:43px;
 		background: url('/images/interface/sprout.png') no-repeat 0 0;
+<<<<<<< HEAD
 		border-radius: 1px;
+=======
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 	}
 	.game-over-content .arrow-left{
 		position:absolute;
@@ -1267,7 +1510,10 @@
 		width:35px;
 		height:62px;
 		background: url('/images/interface/arrow_left.png') no-repeat 0 0;
+<<<<<<< HEAD
 		border-radius: 1px;
+=======
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 		cursor:pointer;
 	}
 	.game-over-content .arrow-right{
@@ -1277,7 +1523,10 @@
 		width:35px;
 		height:62px;
 		background: url('/images/interface/arrow_right.png') no-repeat 0 0;
+<<<<<<< HEAD
 		border-radius: 1px;
+=======
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 		cursor:pointer;
 	}
 	.game-over-content .your-stats{
@@ -1289,6 +1538,7 @@
 		height:335px;
 		list-style:none;
 		background: url('/images/interface/off_white_hexagon.png') no-repeat 0 0;
+<<<<<<< HEAD
 		border-radius: 1px;
 	}
 	.game-over-content .your-stats .stats {
@@ -1296,6 +1546,14 @@
 		position:absolute;
 		left:0;
 		top:131px;
+=======
+	}
+	.game-over-content .your-stats .stats {
+		position:absolute;
+		width:1160px;
+		left:0;
+		top:136px;
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 	}
 	.game-over-content .your-stats .stats li{
 		float:left;
@@ -1303,6 +1561,7 @@
 		color:#000;
 		width:290px;
 	}
+<<<<<<< HEAD
 	.game-over-content .your-stats .stats li strong {
 		font-size:30px;
 		color:#000;
@@ -1310,11 +1569,16 @@
 		text-transform: uppercase;
 	}
 	
+=======
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 	.game-over-content .your-stats .stats li .number{
 		font-size:30px;
 		color:#006838;
 		display:block;
+<<<<<<< HEAD
 		padding-top: 10px;
+=======
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 	}
 	.game-over-content .play-again{
 		position:absolute;
@@ -1326,6 +1590,7 @@
 		background: url('/images/interface/blue_button_sprite.png') no-repeat 0px 0px;
 		color:#fff;
 		font-size:30px;
+<<<<<<< HEAD
 		-webkit-touch-callout: none;
 		-webkit-user-select: none;
 		-khtml-user-select: none;
@@ -1333,6 +1598,8 @@
 		-ms-user-select: none;
 		user-select: none;
 		cursor: pointer;
+=======
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 	}
 	.game-over-content .play-again:hover{
 		background-position:0 -83px;

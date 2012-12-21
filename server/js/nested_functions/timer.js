@@ -57,6 +57,10 @@ $.fn.userReadyCountDownStart = function(settings,whereat) {
 			$('img.hex-counter-5').remove();
 		}
 		
+<<<<<<< HEAD
+=======
+		//jQuery(this).text(whereat.countDownMinutes());
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 		$(this).text(whereat.countDownMinutes());
 		if(whereat > settings.endAt) {
 			whereat = whereat-1;

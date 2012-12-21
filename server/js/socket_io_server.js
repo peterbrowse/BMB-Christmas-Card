@@ -3,16 +3,27 @@ var queue = [];
 var tcpGuests = [];
 var arduinoSocket = null;
 
+<<<<<<< HEAD
 var USER_TABLE = 'bmb_users';
 var PRESENTS_TABLE = 'presents';
 var ADMIN_TABLE = 'admin';
 var areas = ['lobby','game','finished','holdingPen'];
+=======
+var USER_TABLE = 'users';
+var PRESENTS_TABLE = 'presents';
+var ADMIN_TABLE = 'admin';
+var areas = ['lobby','game','finished'];
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 var passPhrase = 'santaServer';
 var ARDUINO_ROOM = areas[3];
 
+<<<<<<< HEAD
 var current_day = 0;
 
 var BALLS_FIRED = 0, SCORED_SHOTS = 0, RUNNING_SCORE = 0, FINAL_SCORE = 0;
+=======
+var BALLS_FIRED = 0, RUNNING_SCORE = 0, FINAL_SCORE = 0;
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 
 var http = require("http")
   , net = require('net')
@@ -20,6 +31,10 @@ var http = require("http")
   , fs = require('fs')
   , io = require('socket.io')
   , sys = require(process.binding('natives').util ? 'util' : 'sys')
+<<<<<<< HEAD
+=======
+  , server
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
   , poolModule = require('generic-pool'); 
 
 var httpServer = http.createServer(function(request, response) {
@@ -89,6 +104,7 @@ tcpServer.on('connection',function(tcpSocket){
     			
     			else if(message.indexOf("score") != -1) {
     				var scoreValueString = message;
+<<<<<<< HEAD
     				var scoreValue = message.split("{");
     				var scoreValue = message.split("}");
     				var scoreValue = scoreValue[0];
@@ -104,6 +120,13 @@ tcpServer.on('connection',function(tcpSocket){
     				SCORED_SHOTS++;
     				io.sockets.in('game').emit('update_score', RUNNING_SCORE);
     				io.sockets.in('game').emit('play_sound', 2);
+=======
+    				var scoreValue = str.split(":");
+    				var scoreValue = scoreValue[1];
+    				console.log(scoreValue);
+    				RUNNING_SCORE++;
+    				io.sockets.in('game').emit('play_sound', 2); 
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
     			}
     			
     			else if(message.indexOf("fire") != -1) {
@@ -206,17 +229,29 @@ io.sockets.on("connection", function(socket) {
     					if(currentDate >= day_one_getTime && currentDate <= day_three_getTime) {
     						if(currentDate >= day_one_getTime && currentDate < day_two_getTime) {
     							socket.emit('current_day', 1);
+<<<<<<< HEAD
     							current_day = 1;
+=======
+    							var current_day = 1;
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
     						}
     						
     						else if(currentDate >= day_two_getTime && currentDate < day_three_getTime_raw) {
     							socket.emit('current_day', 2);
+<<<<<<< HEAD
     							current_day = 2;
+=======
+    							var current_day = 2;
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
     						}
     						
     						else {
     							socket.emit('current_day', 3);
+<<<<<<< HEAD
     							current_day = 3;
+=======
+    							var current_day = 3;
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
     						}
     					
     						if(currentTime > opening_hour && currentTime < closing_hour) {
@@ -253,7 +288,11 @@ io.sockets.on("connection", function(socket) {
     												}
     								
     												else {
+<<<<<<< HEAD
     													callback(false, "Our characters are full up and the game is over. But the unfettered joy lives on.",'after-opening-hours', top_3_presents, top_3_scores);
+=======
+    													callback(false, "The games are over for this year but come back next year to see what fun we have created for you!",'after-opening-hours', top_3_presents, top_3_scores);
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
     												}
     											}
     				
@@ -286,7 +325,11 @@ io.sockets.on("connection", function(socket) {
     					else {
     						callback(
     							  false
+<<<<<<< HEAD
     							, "Our characters are full up and the game is over. But the unfettered joy lives on!"
+=======
+    							, "The games are over for this year but come back next year to see what fun we have created for you!"
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
     							,"closed"
     						);
     					}		
@@ -326,9 +369,13 @@ io.sockets.on("connection", function(socket) {
     						socket.first_name = results[0].first_name;
     						socket.last_name = results[0].last_name;
     						socket.full_name = results[0].first_name + " " + results[0].last_name;
+<<<<<<< HEAD
     						socket.client = results[0].client;
     						socket.prize_won = results[0].prize_won;
     						
+=======
+    						socket.prize_won = results[0].prize_won;
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
     						clients.push(username);
     						socket.join('lobby');
     						//socket.broadcast.emit("now joining: ", fullName);
@@ -425,15 +472,29 @@ io.sockets.on("connection", function(socket) {
     						}
     					});
     					callback(true);
+<<<<<<< HEAD
     				}
     				else {
     					callback(false, (getPosition(queue, socket.username) + 1).zeroPad(2));
     				}
     			}
+=======
+    				}
+    				
+    				else {
+    					callback(false, getPosition(queue, socket.username).zeroPad(2));
+    				}
+    			}
+    			
+    			else {
+    				
+    			} 
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 			});  
     	}
     	
     	else if(action == 'updateQueue') {
+<<<<<<< HEAD
     		if(queue.indexOf(socket.username) != -1) {
     			if(getPosition(queue, socket.username) == 0) {
     				socket.emit('play_sound', 0); 
@@ -468,6 +529,9 @@ io.sockets.on("connection", function(socket) {
     				callback(false, (getPosition(queue, socket.username) + 1).zeroPad(2));
     			}
     		}
+=======
+    	
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
     	}
     	
     	else if(action == 'removeFromQueue') {
@@ -553,6 +617,7 @@ io.sockets.on("connection", function(socket) {
 		});
     });
     
+<<<<<<< HEAD
     socket.on('changeRoom', function (newroom, callback){
     	changeRoom(socket, newroom, function(result){
     		if(result){
@@ -641,6 +706,13 @@ io.sockets.on("connection", function(socket) {
     					});
     				}
     			});
+=======
+    socket.on('gameOver', function(callback, ballsFired, finalScore, userHighestScore, currentPosition){
+    	changeRoom(socket, 'finished', function(result){
+    		if(result){
+    			console.log(socket.username);
+    			//socket.emit('changeRoom', 'finished');
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
     		}
     	});
     });
@@ -650,9 +722,13 @@ io.sockets.on("connection", function(socket) {
             clients.splice(clients.indexOf(socket.username), 1);
             socket.leave(socket.room);
             removeFromQueue(socket, function(removed){
+<<<<<<< HEAD
             	if(removed) {
             		updateQueue();
             	}
+=======
+            	updateQueue(socket);
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
             });
         }
     });
@@ -668,11 +744,26 @@ io.sockets.on("disconnect", function(socket) {
 
 /* FUNCTIONS */
 
+<<<<<<< HEAD
 function addToQueue(userSocket, callback) {
     if(queue.indexOf(userSocket.username) != 1) {
     	if(userSocket.prize_won != true) {
     		queue.push(userSocket.username);
     		callback(true);
+=======
+function addToQueue(action, callback) {
+    if(queue.indexOf(action.username) != 1) {
+    	if(queue.indexOf(action.username) < 0) {
+    		if(action.prize_won != true) {
+    			queue.push(action.username);
+    			callback(true);
+    		}
+    		else {
+    			var error_code = 2; //User has already won a prize.
+    			action.emit('error_messenger', error_code);
+    			callback(false);
+    		}
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
     	}
     	else {
     		var error_code = 2; //User has already won a prize.
@@ -684,7 +775,10 @@ function addToQueue(userSocket, callback) {
 
 function gameStart(socket, question, callback) {
 	socket.emit('userReady', question, function(answer) {
+<<<<<<< HEAD
 		io.sockets.in('lobby').emit('whose_playing', socket.first_name + "/" + socket.client);
+=======
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 		resetScores();
 		callback(true);
 	});
@@ -795,7 +889,11 @@ function receiveHandShake(data, result) {
 }
 
 function resetScores() {
+<<<<<<< HEAD
 	BALLS_FIRED = 0, SCORED_SHOTS = 0, RUNNING_SCORE = 0, FINAL_SCORE = 0;
+=======
+	var BALLS_FIRED = 0, RUNNING_SCORE = 0, FINAL_SCORE = 0;
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 };
 
 function tcpTimeoutReported() {
@@ -844,6 +942,7 @@ Date.prototype.getShortMonthName = function () {
 
 Date.prototype.getDayName = function() {
 	return this.dayNames[this.getDay()];
+<<<<<<< HEAD
 }
 
 Array.prototype.userPosition = function(elt) {
@@ -855,4 +954,6 @@ Array.prototype.userPosition = function(elt) {
 		}
 	}
 	return null;
+=======
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 }

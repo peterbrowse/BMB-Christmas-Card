@@ -230,7 +230,10 @@ body {
 	border: 0;
 	
 	-ms-overflow-style: scrollbar;
+<<<<<<< HEAD
 	outline: none !important;
+=======
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 }
 
 .container {
@@ -247,7 +250,11 @@ body {
 .header-container {
 	width: 100%;
 	position: relative;
+<<<<<<< HEAD
 	z-index: 300;
+=======
+	z-index: 10;
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 	overflow: hidden;
 }
 
@@ -264,9 +271,18 @@ body {
 	
 	.view-container {
 		height: 439px;
+<<<<<<< HEAD
 		margin: auto;
 		margin-bottom: 43px;
 		outline: none !important;
+=======
+		width: 780px;
+		max-width: 780px;
+		width:expression(document.body.clientWidth > 780? "780px": "auto" );
+		margin: auto;
+		margin-bottom: 43px;
+		background-color: #FFF;
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 	}
 	
 	.menu-container {
@@ -447,26 +463,38 @@ body {
 	.leaderboard {
 		position: relative;
 		z-index: 3;
+<<<<<<< HEAD
 		z-index: 102;
+=======
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 	}
 	
 		.section-slider {
 			width: 100%;
     		position: relative;
     		padding-bottom: 100px;
+<<<<<<< HEAD
     		z-index: 102;
+=======
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 		}
 		
 			.slider-container {
     			height:auto;
 				margin: 0 auto;
 				position: relative;
+<<<<<<< HEAD
 				z-index: 102;
+=======
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 			}
 			
 				.slider-container .card {
 					width: 100% !important;
+<<<<<<< HEAD
 					z-index: 102;
+=======
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 				}
 				
 				.card_fluid_fix {
@@ -474,7 +502,10 @@ body {
     				display: block !important;
     				height: auto !important;
     				*display: inline;
+<<<<<<< HEAD
     				z-index: 102;
+=======
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 				}
 				
 					.card-inner {
@@ -483,7 +514,10 @@ body {
 						width: 100%;
 						max-width: 780px;
 						width:expression(document.body.clientWidth > 780? "780px": "auto" );
+<<<<<<< HEAD
 						z-index: 102;
+=======
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 					}
 					
 						.score-item {
@@ -620,6 +654,7 @@ body {
 .footer-container {
 	width: 100%;
 	position: relative;
+<<<<<<< HEAD
 	background-color: #FFFFFF;
 	text-align: center;
 	line-height: 0;
@@ -641,6 +676,13 @@ body {
 			display: none;
     	}
 
+=======
+	z-index: 9999;
+	background-color: #FFFFFF;
+	text-align: center;
+	line-height: 0;
+}
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 	.footer-container img.footer-img {
 		margin-top: 152px;
 		width: 100%;

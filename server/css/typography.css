@@ -142,9 +142,12 @@ input#user-email {
 			font-size: 18px;
 			line-height: 36px;
 			vertical-align: middle;
+<<<<<<< HEAD
 			width: 90%;
 			max-width: 780px;
 			width:expression(document.body.clientWidth > 780? "780px": "auto" );
+=======
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 		}
 	}
 	
@@ -158,6 +161,7 @@ input#user-email {
 
 /* END SECTION */
 
+<<<<<<< HEAD
 /* TERMS & CONDITIONS */
 	.terms-controller p {
 		line-height: 1.4;
@@ -189,6 +193,8 @@ input#user-email {
 			}
 /* END TERMS & CONDITIONS */
 
+=======
+>>>>>>> 36f8872cfca424a305ab6c0283fcbf3fc507724e
 /* BACK TO TOP */
 
 .back-top p {
