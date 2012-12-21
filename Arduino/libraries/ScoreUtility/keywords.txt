@@ -1,0 +1,26 @@
+#######################################
+# ScoreGate - A Class to Easily Setup our ScoreGates.
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+ScoreGate	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+run	KEYWORD2
+debugMode	KEYWORD2
+getPin	KEYWORD2
+getdebugLevel	KEYWORD2
+setdebugLevel	KEYWORD2
+getScore	KEYWORD2
+setScore	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+

@@ -1,0 +1,29 @@
+#######################################
+# IRScoreGate - A Class to Easily Setup our IRScoreGates.
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+IRScoreGate	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+calibrate	KEYWORD2
+run	KEYWORD2
+debugMode	KEYWORD2
+getPin	KEYWORD2
+getAddedTolerance	KEYWORD2
+setAddedTolerance	KEYWORD2
+getdebugLevel	KEYWORD2
+setdebugLevel	KEYWORD2
+getScore	KEYWORD2
+setScore	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+

@@ -14,22 +14,29 @@
 class WiFiSetup
 {
   	public:
-    	WiFiSetup(char* ssid, char* pass, char* serverAddress, int serverPort, int encryptionType);
+    	WiFiSetup(char* ssid, char* pass, char* serverAddress, int serverPort, int encryptionType, int debugLevel = 0);
 
 		WiFiClient client;
 		
+		//FUNCTIONS
 		bool connect();
 		void software_Reset();
+		
+		//GETTERS AND SETTERS
+		int getdebugLevel();
+		void setdebugLevel(int debugLevel);
 		
   	private:
 		char* _ssid;
 		char* _pass;
 		char* _serverAddress;
 		int _serverPort;
-		int status;
-		String result;
+		int _status;
+		String _result;
 		int _encryptionType;
-		byte mac[6];
+		byte _mac[6];
+		
+		int _debugLevel;
 };
 
 #endif

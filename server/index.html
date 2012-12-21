@@ -3,70 +3,598 @@
 	<head>
         <title>BMB Christmas Card 2012/13</title>
         <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" />
+		<link href="/images/favicon.ico" type="image/x-icon" rel="shortcut icon">
          
-    	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-		<script src="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
+    	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+    	<script type="text/javascript" src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+		<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.0.rc.1/handlebars.min.js"></script>
 		<script type="text/javascript" src="http://5.79.16.234:8080/socket.io/socket.io.js"></script>
+		<script type="text/javascript" src="js/jquery.jplayer.min.js"></script>
+		<script type="text/javascript" src="js/jquery.preloader.js"></script>
+		<script type="text/javascript" src="js/flash_detect_min.js"></script>
 		<script type="text/javascript" src="js/function.js"></script>
-		<script type="text/javascript" src="js/states.js"></script>
+		<script type="text/javascript" src="js/jquery.cycle.all.js"></script>
 		<script type="text/javascript" src="js/socket_io_client.js"></script>
 		<script type="text/javascript" src="js/nested_functions/timer.js"></script>
-
-        <link href="css/base-reset.css" rel="stylesheet" />
-        <link href="css/general.css" rel="stylesheet" />
-        <link href="css/typography.css" rel="stylesheet" />
+		<script type="text/javascript" src="js/states.js"></script>
+		
+        <link rel="stylesheet" href="css/MyFontsWebfontsKit.css" type="text/css" />
+		<link rel="stylesheet" href="css/base-reset.css" type="text/css" />
+        <link rel="stylesheet" href="css/general.css" type="text/css" />
+        <link rel="stylesheet" href="css/typography.css" type="text/css" />
+        <link rel="stylesheet" href="css/states.css" type="text/css" />
+        
+        <script type="text/javascript" src="js/respond.src.js"></script>
 	</head>
-    <body>
+    <body tabindex="1">
+    	<audio src="/audio/Sleigh-Ride.mp3" preload="auto"></audio>
     	<div class="container">
-    		<div class="server_contact-container">
-    			<h1>Contacting Santa...</h1>
-    		</div>
-    		<div class="cheat">
-    			<h1>Naughty, you've just found your way on to Santa's black list.</h1>
-    		</div>
-    		<div class="entry-form-container">
-    			<h1>Welcome</h1>
-    			<form class="entry-form">
-            		<label id="user-email-label" for="user-email">Choose a username</label><br />
-            		<input id="user-email" />
-            		<div class="submit-button">Enter</div>
-            		<div id="user-error">HO HO OH No, I'm sorry, you aren't on the good list.</div>
-        		</form>
-    		</div>
-    		
-    			<iframe width="560" height="340" src="http://cdn.livestream.com/embed/bmbchristmas?layout=4&amp;height=340&amp;width=560&amp;autoplay=true" style="border:0;outline:0" frameborder="0" scrolling="no"></iframe>
-    		<div class="servo-container">
-    			<div class="status-bar"></div>
-    			<!--<div class="servo">
-    				<div class="servo-screw TL">+</div>
-    				<div class="servo-screw TR">+</div>
-    				<div class="servo-screw BL">+</div>
-    				<div class="servo-screw BR">+</div>
-    				<div class="servo-body">
-    					<div class="servo-head">
-    						<div class="servo-screw servo-head-fix">+</div>
+    		<div class="header-container">
+    			<div class="main-logo">
+    				<a href="http://www.bmbagency.com/" target="_blank"><img src="/images/general/BMB_logo.png" alt="BMB Logo" /></a>
+    			</div>
+    			<div class="view-container">
+    				<div class="scene-outter">
+    					<div class="scene-container">
+    						<noscript>
+    							<div class="no-javascript green-bg">
+    								<div class="no-javascript-outter">
+    									<div class="no-javascript-content">
+    										<h1>This experience requires javascript, please ensure it's enabled.</h1>
+    									</div>
+    								</div>
+    							</div>
+    						</noscript>
     					</div>
-    					<div class="servo-label"></div>
+    					<script class="doorman-template" type = "text/x-handlebars-template">
+    						<div class="view {{className}}{{#if bgColour}} {{bgColour}}-bg{{/if}}">
+    							{{{content}}}
+    						</div>
+    					</script>
+    					<script class="connecting-template" type="text/x-handlebars-template">
+    						<div class="view {{className}}{{#if bgColour}} {{bgColour}}-bg{{/if}}">
+    							<div class="loading-kid">
+    								<p>{{{randColour message}}}</p>
+    							</div>
+    						</div>
+    					</script>
+    					<script class="login-template" type="text/x-handlebars-template">
+    						<div class="view {{className}}{{#if bgColour}} {{bgColour}}-bg{{/if}}">
+    								{{{content}}}
+    						</div>
+    					</script>
+    					
+    					<script class="audio-template" type="text/x-handlebars-template">
+    						<div class="music-container">
+    							<p>On/Off</p>
+    						</div>
+    					</script>
+    					<script class="lobby-template" type="text/x-handlebars-template">
+    						<div class="view lobby none-bg">
+    							<div class="global-help-button">
+    								<p>Help!</p>
+    								<img src="/images/interface/corner_left_red.png" />
+    							</div>
+    							<div class="global-help blue-bg">
+    								<div class="global-close-button">
+    									<p>Close</p>
+    									<img src="/images/interface/corner_left_white.png" />
+    								</div>
+    								<div class="global-logout-white-button">
+    									<img src="/images/interface/corner_right_white.png" />
+    									<p>Log Out</p>
+    								</div>
+    								<div class="global-help-content">
+    									<p class="global-help-intro">You have 120 seconds to feed our characters their globular greens!</p>
+										<div class="help-text-arrows">
+											<img src="/images/instructions/arrow_keys.png" />
+											<p>Use the directional arrows on your keyboard to aim your sprouts before you...</p>
+										</div>
+										<img src="/images/interface/plus_symbol.png" class="help-text-plus" />
+										<div class="help-text-spacebar">
+											<img src="/images/instructions/spacebar.png" />
+											<p>...Hit and release the space bar to SHOOT!</p>
+										</div>
+										<p class="contactWho">Any problems, email:</p>			
+										<a href="mailto:santa@bmbagency.com" class="mailtoSanta-button">santa@bmbagency.com</a>
+    								</div>
+    							</div>
+    							<div class="global-blue-top-bar">
+    								<img class="panels" src="/images/interface/corner_left_blue.png" />
+    								<div class="barContent">
+    									<div class="barContentTextHolder"><p>Click here to get started!</p></div>
+    								</div>
+    								<img class="panels" src="/images/interface/corner_right_blue.png" />
+    							</div>
+    							<div class="global-logout-button">
+    								<img src="/images/interface/corner_right_red.png" />
+    								<p>Log Out</p>
+    							</div>
+    						</div>
+    					</script>
+    					<script class="userReady-template" type="text/x-handlebars-template">
+    						<div class="view lobby clear-bg">
+    							<div class="global-help-button">
+    								<p>Help!</p>
+    								<img src="/images/interface/corner_left_red.png" />
+    							</div>
+    							<div class="global-help blue-bg">
+    								<div class="global-close-button">
+    									<p>Close</p>
+    									<img src="/images/interface/corner_left_white.png" />
+    								</div>
+    								<div class="global-logout-white-button">
+    									<img src="/images/interface/corner_right_white.png" />
+    									<p>Log Out</p>
+    								</div>
+    								<div class="global-help-content">
+    									<p class="global-help-intro">You have 120 seconds to feed our characters their globular greens!</p>
+										<div class="help-text-arrows">
+											<img src="/images/instructions/arrow_keys.png" />
+											<p>Use the directional arrows on your keyboard to aim your sprouts before you...</p>
+										</div>
+										<img src="/images/interface/plus_symbol.png" class="help-text-plus" />
+										<div class="help-text-spacebar">
+											<img src="/images/instructions/spacebar.png" />
+											<p>...Hit and release the space bar to SHOOT!</p>
+										</div>
+										<p class="contactWho">Any problems, email:</p>			
+										<a href="mailto:santa@bmbagency.com" class="mailtoSanta-button">santa@bmbagency.com</a>
+    								</div>
+    							</div>
+    							<div class="global-logout-button">
+    								<img src="/images/interface/corner_right_red.png" />
+    								<p>Log Out</p>
+    							</div>
+								<div class="countdown-hexagon">
+									<p class="countdown-message">Ready to play</p>
+									<img src="/images/interface/counter1.png" class="hex-counter-1" />
+									<img src="/images/interface/counter2.png" class="hex-counter-2" />
+									<img src="/images/interface/counter3.png" class="hex-counter-3" />
+									<img src="/images/interface/counter4.png" class="hex-counter-4" />
+									<img src="/images/interface/counter5.png" class="hex-counter-5" />
+									<img src="/images/interface/counter6.png" class="hex-counter-6" />
+									
+									<div class="lets-begin">
+										<img src="/images/interface/counter_letsbegin.png" />
+										<p>Go!</p>
+									</div>
+								</div>
+								
+								<div class="target-scroller">
+									<ul class="target-scroller-items">
+										<li>
+											<img src="/images/instructions/Targets/kid.png">
+											<span>= 75 points</span>
+										</li>
+										<li>
+											<img src="/images/instructions/Targets/santa.png">
+											<span>= 100 points</span>
+										</li>
+										<li>
+											<img src="/images/instructions/Targets/nutcracker.png">
+											<span>= 200 points</span>
+										</li>
+										<li>
+											<img src="/images/instructions/Targets/polar.png">
+											<span>= 500 points</span>
+										</li>
+									</ul>
+								</div>
+    						</div>
+    						</script>
+    						<script class="game-screen" type="text/x-handlebars-template">
+    						<div class="view game none-bg">
+    							<div class="global-help-button">
+    								<p>Help!</p>
+    								<img src="/images/interface/corner_left_red.png" />
+    							</div>
+    							<div class="global-help blue-bg">
+    								<div class="global-close-button">
+    									<p>Close</p>
+    									<img src="/images/interface/corner_left_white.png" />
+    								</div>
+    								<div class="global-logout-white-button">
+    									<img src="/images/interface/corner_right_white.png" />
+    									<p>Log Out</p>
+    								</div>
+    								<div class="global-help-content">
+    									<p class="global-help-intro">You have 120 seconds to feed our characters their globular greens!</p>
+										<div class="help-text-arrows">
+											<img src="/images/instructions/arrow_keys.png" />
+											<p>Use the directional arrows on your keyboard to aim your sprouts before you...</p>
+										</div>
+										<img src="/images/interface/plus_symbol.png" class="help-text-plus" />
+										<div class="help-text-spacebar">
+											<img src="/images/instructions/spacebar.png" />
+											<p>...Hit and release the space bar to SHOOT!</p>
+										</div>
+										<p class="contactWho">Any problems, email:</p>			
+										<a href="mailto:santa@bmbagency.com" class="mailtoSanta-button">santa@bmbagency.com</a>
+    								</div>
+    							</div>
+    							
+    							<div class="game-scoreboard">
+    								<div class="score-board-panel">
+    									<img src="/images/interface/corner_left_top_white.png" />
+    								</div>
+    								<div class="scores">
+    									<div class="users-score"><p class="title">Your Score<p class="amount-user">000000</span></p></div>
+    									<div class="score-seperator"><div class="score-seprator-line"></div></div>
+    									<div class="highest-score"><p class="title">Score to Beat<p class="amount-highest">{{topScore}}</span><p></div>
+    								</div>
+    								<div class="score-board-panel">
+    									<img src="/images/interface/corner_right_top_white.png" />
+    								</div>
+    							</div>
+
+    							<div class="global-logout-button">
+    								<img src="/images/interface/corner_right_red.png" />
+    								<p>Log Out</p>
+    							</div>
+    							
+    							<div class="game-target target-on"></div>
+    							
+    							<div class="game-countdown">
+    								<img src="/images/interface/corner_left_bottom_white.png" />
+    								<p class="countdown">00:00</p>
+    								<img src="/images/interface/corner_right_bottom_white.png" />
+    							</div>
+    							
+    							<div class="game-target-controller">
+    								<img src="/images/interface/corner_left_green.png" />
+    								<p>On/Off</p>
+    							</div>
+    						</div>
+    						</script>
+    						<script class="game-over" type="text/x-handlebars-template">
+    						<div class="view game-over blue-bg">
+    							<div class="white-help-button">
+    								<p>Help!</p>
+    								<img src="/images/interface/corner_left_white.png" />
+    							</div>
+    							<div class="global-help blue-bg">
+    								<div class="global-close-button">
+    									<p>Close</p>
+    									<img src="/images/interface/corner_left_white.png" />
+    								</div>
+    								<div class="global-logout-white-button">
+    									<img src="/images/interface/corner_right_white.png" />
+    									<p>Log Out</p>
+    								</div>
+    								<div class="global-help-content">
+    									<p class="global-help-intro">You have 120 seconds to feed our characters their globular greens!</p>
+										<div class="help-text-arrows">
+											<img src="/images/instructions/arrow_keys.png" />
+											<p>Use the directional arrows on your keyboard to aim your sprouts before you...</p>
+										</div>
+										<img src="/images/interface/plus_symbol.png" class="help-text-plus" />
+										<div class="help-text-spacebar">
+											<img src="/images/instructions/spacebar.png" />
+											<p>...Hit and release the space bar to SHOOT!</p>
+										</div>
+										<p class="contactWho">Any problems, email:</p>			
+										<a href="mailto:santa@bmbagency.com" class="mailtoSanta-button">santa@bmbagency.com</a>
+    								</div>
+    							</div>
+
+    							<div class="game-over-content">
+									<div class="icy-hex">
+										<p>Game over</p>
+									</div>
+									<div class="santa"></div>
+    							</div>
+
+    							<div class="global-logout-white-button">
+    								<img src="/images/interface/corner_right_white.png" />
+    								<p>Log Out</p>
+    							</div>
+    						</div>
+    						</script>
+    						<script class="game-over-stats" type="text/x-handlebars-template">
+    							<div class="view game-over blue-bg">
+    							<div class="white-help-button">
+    								<p>Help!</p>
+    								<img src="/images/interface/corner_left_white.png" />
+    							</div>
+    							<div class="global-help blue-bg">
+    								<div class="global-close-button">
+    									<p>Close</p>
+    									<img src="/images/interface/corner_left_white.png" />
+    								</div>
+    								<div class="global-logout-white-button">
+    									<img src="/images/interface/corner_right_white.png" />
+    									<p>Log Out</p>
+    								</div>
+    								<div class="global-help-content">
+    									<p class="global-help-intro">You have 120 seconds to feed our characters their globular greens!</p>
+										<div class="help-text-arrows">
+											<img src="/images/instructions/arrow_keys.png" />
+											<p>Use the directional arrows on your keyboard to aim your sprouts before you...</p>
+										</div>
+										<img src="/images/interface/plus_symbol.png" class="help-text-plus" />
+										<div class="help-text-spacebar">
+											<img src="/images/instructions/spacebar.png" />
+											<p>...Hit and release the space bar to SHOOT!</p>
+										</div>
+										<p class="contactWho">Any problems, email:</p>			
+										<a href="mailto:santa@bmbagency.com" class="mailtoSanta-button">santa@bmbagency.com</a>
+    								</div>
+    							</div>
+
+    							<div class="game-over-content">
+									<div class="your-stats">
+										<ul class="stats">
+											{{#if newHighScore}}
+											<li>Your <strong>NEW</strong> high score: <span class="number">{{usersScore}}</span></li>
+											{{else}}
+											<li>Your score: <span class="number">{{usersScore}}</span></li>									
+											<li>Your high score: <span class="number">{{usersHighscore}}</span></li>
+											{{/if}}									
+											<li>Current daily position: <span class="number">{{usersPosition}}</span></li>	
+											<li>Sprouts fired: <span class="number">{{ballsFired}}</span></li>
+											<li>Your Accuracy: <span class="number">{{accuracy}}</span></li>
+										</ul>
+									</div>
+									<div class="sprout"></div>
+									<div class="penguin"></div>
+									<div class="arrow-left"></div>
+									<div class="arrow-right"></div>
+									<p class="play-again">Play again</p>
+    							</div>
+
+    							<div class="global-logout-white-button">
+    								<img src="/images/interface/corner_right_white.png" />
+    								<p>Log Out</p>
+    							</div>
+    						</div>
+    						</script>
+    						<script class="pre-game-help-template" type="text/x-handlebars-template">
+    								<div class="global-help-content pre-game-help green-bg">
+    									<p class="global-help-intro pre-game-title">You have 120 seconds to feed our characters their globular greens!</p>
+										<div class="help-text-arrows">
+											<img src="/images/instructions/arrow_keys.png" />
+											<p>Use the directional arrows on your keyboard to aim your sprouts before you...</p>
+										</div>
+										<img src="/images/interface/plus_symbol.png" class="help-text-plus" />
+										<div class="help-text-spacebar">
+											<img src="/images/instructions/spacebar.png" />
+											<p>...Hit and release the space bar to SHOOT!</p>
+										</div>
+										<p class="contactWho">Any problems, email:</p>			
+										<a href="mailto:santa@bmbagency.com" class="mailtoSanta-button">santa@bmbagency.com</a>
+    								</div>
+    						</script>
+    						<script class="error-template" type="text/x-handlebars-template">
+    							<div class="error_message {{#if background}} {{background}}-bg{{/if}}">
+    								<div class="error-content-holder">
+    									<div class="error-copy-holder">
+    										<h1>{{header}}</h1>
+    										<h2>{{error_name}}<h2>
+    										<p>{{copy}}</p>
+    									</div>
+    									{{#if confirm}}
+    										<div class="error-button-holder">
+    											<p>{{confirm}}</p>
+    										</div>
+    									{{/if}}
+    								</div>
+    							</div>
+    						</script>
+    						<script class="disconnect-template" type="text/x-handlebars-template">
+    							<div class="error_message green-bg">
+    								<div class="disconnect-content-holder">
+    									
+    								</div>
+    							</div>
+    						</script>
+    						<script class="no-flash-template" type="text/x-handlebars-tempalte">
+    							<div class="no-flash orange-bg">
+    								<div class="no-flash-content">
+    									<a href="http://get.adobe.com/flashplayer/" target="_blank"><h1>Download it here</h1></a>
+    								</div>
+    							</div>
+    						</script>
+    					<div class="music-file"></div>
+    					<div class="fire-file"></div>
+    					<div class="score-file"></div>
+    					<div class="bell-file"></div>
+    					<div id="flashContent">
+        					<iframe class="flash" tabindex="-1" frameborder="0" height="439" scrolling="no" src="http://christmas.bmbagency.com/includes/iframe/viewer.html" width="780"></iframe>
+        				</div>
     				</div>
-    			</div>-->
-    			
-    			<div class="queue-buttons">
-    				<div class="queue-button join">Join Queue</div>
-    				<div class="queue-button leave queue-button-off">Leave Queue</div>
     			</div>
-    			<div class="question-lobby-game">
-    				On the next screen you will be presented with fire control commands.<br />
-    				If you understand this, click start now, else you'll be automatically switched when the time runs out.<br />
-    				Time Remaining: <span id="countdown">10</span>
-    				<div class="startButton">Start Now</div>
+    			<div class="menu-container">
+    				<div class="menu-container-inner">
+    					<ul>
+    						<li>About</li>
+    						<li>Prizes</li>
+    						<li>Instructions</li>
+    						<li>Leaderboard</li>
+    					</ul>
+    				</div>
     			</div>
-    			<div class="movement-buttons">
-    				<div class="movebutton" rel="left">Left</div>
-    				<div class="movebutton" rel="reset">Reset</div>
-    				<div class="movebutton" rel="fire">FIRE</div>
-    				<div class="movebutton" rel="right">Right</div>
+    		</div>
+    		<div class="section about">
+    			<div class="section-header">
+    				<img src="/images/about/HEADER_Kid.png" alt="About Header Image" />
+    				<p>About</p>
     			</div>
+    			<div class="section-content">
+    				<p>Brussels sprouts. Dislike them or hate them, they're as much a part of Christmas as Morecambe & Wise, turkey, or children crashing their new bikes into your hedge.<br /><br />
+    				So for the BMB Christmas Game, we want you to fire the little green blobs into the gaping mouths of our hungry Christmas Characters - and if you're in the top 3 at the end of the day, we'll send a fantastic prize your way.<br /><br />
+    				Playtime is 10am-2pm, 12-14 Dec, so get it in your diaries and get involved.
+    				</p>
+    			</div>
+    		</div>
+    		<div class="section prizes">
+    			<div class="section-header">
+    				<img src="/images/prizes/HEADER_Prizes.png" alt="Prizes Header Image" />
+    				<p>Prizes</p>
+    			</div>
+    			<div class="prize-grid">
+    					<div class="prize-grid-container">
+    						<ul>
+    							<li class="unset">loading...</li>
+    							<li class="unset">loading...</li>
+    							<li class="unset">loading...</li>
+    							<li class="unset">loading...</li>
+    							<li class="unset">loading...</li>
+    							<li class="unset">loading...</li>
+    							<li class="unset">loading...</li>
+    							<li class="unset">loading...</li>
+    							<li class="unset">loading...</li>
+    						</ul>
+    					</div>
+    				</div>
+    		</div>
+    		<div class="section instructions">
+    			<div class="section-header">
+    				<img src="/images/instructions/HEADER_Gamepad.png" alt="Instructions Header Image" />
+    				<p>Instructions</p>
+    			</div>
+    			<div class="target-grid">
+    				<p>You have 120 seconds to feed our characters their globular greens.</p>
+    				<p>Use the left and right arrows to aim.</p>
+    				<img src="/images/instructions/arrow_keys.png" alt="Arrows Instruction Image" class="instructions-img" />
+    				<p>and when you're ready</p>
+    				<img src="/images/instructions/spacebar300.png" alt="Spacebar Instruction Image" class="instructions-img" />
+    				<p>Press the space bar to shoot</p>
+    				<p>Each target is worth the following:</p>
+    				<div class="target-grid-container">
+    					<ul>
+    						<li>
+    							<img src="/images/instructions/Targets/kid.png" />
+    							<p>75 points</p>
+    						</li>
+    						<li>
+    							<img src="/images/instructions/Targets/santa.png" />
+    							<p>100 points</p>
+    						</li>
+    						<li>
+    							<img src="/images/instructions/Targets/nutcracker.png" />
+    							<p>200 points</p>
+    						</li>
+    						<li>
+    							<img src="/images/instructions/Targets/polar.png" />
+    							<p>500 points</p>
+    						</li>
+    					</ul>
+    				</div>
+    			</div>
+    		</div>
+    		<div class="section leaderboard">
+    			<div class="section-header">
+    				<img src="/images/leaderboard/HEADER_Star.png" alt="LeaderBoard Header Image" />
+    				<p>Today's Top Sproutshooters</p>
+    			</div>
+    			<div class="section-slider">
+    				<div class="slider-container">
+    					<div class="score-cards">
+    						<div class="card card_fluid_fix card-one">
+    							<div class="card-inner">
+    								<p class="title">Day 1</p>
+    								<div class="score-item"><ul><li class="present"><img src="/images/prizes/present1.png" /></li><li class="user-details">.../...</li><li class="user-score">000000</li></ul></div>
+    								<div class="score-item"><ul><li class="present"><img src="/images/prizes/present2.png" /></li><li class="user-details">.../...</li><li class="user-score">000000</li></ul></div>
+    								<div class="score-item"><ul><li class="present"><img src="/images/prizes/present3.png" /></li><li class="user-details">.../...</li><li class="user-score">000000</li></ul></div>
+    								<div class="score-item"><ul><li class="present"></li><li class="user-details">.../...</li><li class="user-score">000000</li></ul></div>
+    								<div class="score-item"><ul><li class="present"></li><li class="user-details">.../...</li><li class="user-score">000000</li></ul></div>
+    								<div class="score-item"><ul><li class="present"></li><li class="user-details">.../...</li><li class="user-score">000000</li></ul></div>
+    								<div class="score-item"><ul><li class="present"></li><li class="user-details">.../...</li><li class="user-score">000000</li></ul></div>
+    								<div class="score-item"><ul><li class="present"></li><li class="user-details">.../...</li><li class="user-score">000000</li></ul></div>
+    								<div class="score-item"><ul><li class="present"></li><li class="user-details">.../...</li><li class="user-score">000000</li></ul></div>
+    								<div class="score-item"><ul><li class="present"></li><li class="user-details">.../...</li><li class="user-score">000000</li></ul></div>
+    							</div>
+    						</div>
+    						<!--<div class="card card-two">
+    							<div class="card-inner">
+    								<p class="title">Day 2</p>
+    								<div class="score-item"><ul><li class="present"><img src="/images/prizes/present1.png" /></li><li class="user-details">.../...</li><li class="user-score">000000</li></ul></div>
+    								<div class="score-item"><ul><li class="present"><img src="/images/prizes/present2.png" /></li><li class="user-details">.../...</li><li class="user-score">000000</li></ul></div>
+    								<div class="score-item"><ul><li class="present"><img src="/images/prizes/present3.png" /></li><li class="user-details">.../...</li><li class="user-score">000000</li></ul></div>
+    								<div class="score-item"><ul><li class="present"></li><li class="user-details">.../...</li><li class="user-score">000000</li></ul></div>
+    								<div class="score-item"><ul><li class="present"></li><li class="user-details">.../...</li><li class="user-score">000000</li></ul></div>
+    								<div class="score-item"><ul><li class="present"></li><li class="user-details">.../...</li><li class="user-score">000000</li></ul></div>
+    								<div class="score-item"><ul><li class="present"></li><li class="user-details">.../...</li><li class="user-score">000000</li></ul></div>
+    								<div class="score-item"><ul><li class="present"></li><li class="user-details">.../...</li><li class="user-score">000000</li></ul></div>
+    								<div class="score-item"><ul><li class="present"></li><li class="user-details">.../...</li><li class="user-score">000000</li></ul></div>
+    								<div class="score-item"><ul><li class="present"></li><li class="user-details">.../...</li><li class="user-score">000000</li></ul></div>
+    							</div>
+    						</div>
+    						<div class="card card-three">
+    							<div class="card-inner">
+    								<p class="title">Day 3</p>
+    								<div class="score-item"><ul><li class="present"><img src="/images/prizes/present1.png" /></li><li class="user-details">.../...</li><li class="user-score">000000</li></ul></div>
+    								<div class="score-item"><ul><li class="present"><img src="/images/prizes/present2.png" /></li><li class="user-details">.../...</li><li class="user-score">000000</li></ul></div>
+    								<div class="score-item"><ul><li class="present"><img src="/images/prizes/present3.png" /></li><li class="user-details">.../...</li><li class="user-score">000000</li></ul></div>
+    								<div class="score-item"><ul><li class="present"></li><li class="user-details">.../...</li><li class="user-score">000000</li></ul></div>
+    								<div class="score-item"><ul><li class="present"></li><li class="user-details">.../...</li><li class="user-score">000000</li></ul></div>
+    								<div class="score-item"><ul><li class="present"></li><li class="user-details">.../...</li><li class="user-score">000000</li></ul></div>
+    								<div class="score-item"><ul><li class="present"></li><li class="user-details">.../...</li><li class="user-score">000000</li></ul></div>
+    								<div class="score-item"><ul><li class="present"></li><li class="user-details">.../...</li><li class="user-score">000000</li></ul></div>
+    								<div class="score-item"><ul><li class="present"></li><li class="user-details">.../...</li><li class="user-score">000000</li></ul></div>
+    								<div class="score-item"><ul><li class="present"></li><li class="user-details">.../...</li><li class="user-score">000000</li></ul></div>
+    							</div>
+    						</div>
+    					</div>-->
+    				</div>
+    				<div class="slider-navigation">
+    					<div class="slider-navigation-inner">
+    						<ul>
+    						</ul>
+    					</div>
+    				</div>
+    			</div>
+    		</div>
+    		<div class="footer-container">
+    			<div class="terms-controller"><p>Terms & Conditions</p></div>
+    			<div class="terms-list-container">
+    			<div class="terms">
+    				<h2>BMB's Sprout Shooter Terms & Conditions</h2>
+    				<ol>
+    					<li>By playing the Sprout Shooter, you agree to be bound by these Terms and Conditions.</li>
+    					<li>Entry is open to all clients of Beattie McGuinness Bungay London LLP ("BMB"). Directors, management and employees (and the immediate families of directors, management and employees) of BMB or the agencies or companies associated with this Promotion are not permitted to enter the Promotion. Clients will be specifically invited to enter the game, and their email address will be matched against a database of email addresses to enter the game. If you are  a client of BMB but unable to gain access to the game please contact your Account Manager.</li>
+    					<li>To enter, you must log in using your email address. You will then be in a queue before you can take control of the Sprout Shooter. You need to aim sprouts through targets to score points. Different targets are worth different points. The top three scores at the end of each  day of the Promotion will win a prize. Prizes are as described on the game landing page.</li>
+    					<li>You may play as often as you want (between the hours of 10am - 2pm on 12th, 13th and 14th December) in order to win a prize. Only one prize per person. Once you have won a prize you will only have viewing access to the Sprout Shooter and will not be able to play the game again. In the event that one person has more than one of the top three scores then only the highest of that person's scores will be taken into account for the purposes of determining the prize winners.</li>
+    					<li>When you play Sprout Shooter you grant BMB sole unlimited, freely assignable, royalty free licence over any recorded footage of your game.</li>
+    					<li>The Sprout Shooter game commences at 10am on 12th December 2012 and closes at 2pm on 14th December 2012 ("Closing Date") Prizes are awarded at 2pm at the end of each day of game play.</li>
+    					<li>The winners will be selected based on their score at the end of the day's game play period (10am - 2pm). There will be three prizes per day for the top three scoring entries. In the event that there are more entries with the same score than prizes remaining then the tying entries will be entered into a draw and a winner(s) selected at random from such entries.</li>
+    					<li>The winner will be notified of the fact that they have won within 24 hours of the close of play by email. The Account Manager for that client will arrange delivery of the prize, and it will be up to the client to advise the Account Manager of an alternative delivery address - the assumed default delivery address will be the registered office for that client. Where the client is unable to reach their Account Manager, they can contact santa@bmbagency.com. Prizes shall be delivered within 14 days of the Closing Date. BMB will not be able to arrange re-delivery should the client wish to change their address once the prize has been dispatched.</li>
+    					<li>BMB reserves the right to cancel, amend, terminate or temporarily suspend this competition at any time with no liability to any entrant or any third party.</li>
+    					<li>No cash or alternative prizes are available, with the exception that in the event of circumstances outside of its control, BMB  reserves the right to award similar prize(s) of equal or greater value.</li>
+    					<li>If for any reason any aspect of the Promotion does not function correctly, whether by means of infection by computer virus, network failure, bugs, tampering, unauthorised intervention, fraud, technical failures or any cause beyond the control of BMB that corrupts or affects the administration, integrity or fairness of the Promotion then BMB may at its sole discretion cancel, modify or suspend the Promotion and/or invalidate affected entries.</li>
+    					<li>You will need internet access to be able to enter the competition. This competition is not available on mobile or tablet devices or any other devices that do not support  flash. You will need flash version 9 or above to be able to play the game. This game is not supported by browsers older than Internet 7.</li>
+    					<li>If there are reasonable grounds to believe that there has been a breach of these Terms and Conditions by an entrant, BMB may, at its sole discretion invalidate the relevant entry and disqualify the entrant from the Promotion.</li>
+    					<li>BMB's decision in all matters relating to the Promotion is final and binding and no correspondence will be entered into.</li>
+    					<li>Should you win, you agree to take part for free in any publicity for the Promotion as requested by BMB.</li>
+    					<li>The winners names and company details will be available upon request after the Closing Date, in writing to BMB marked "Winners List - Sprout Shooter".</li>
+    					<li>Entrants must seek the permission of their employer before entering this Promotion.</li>
+    					<li>This Promotion is subject to English law and the exclusive jurisdiction of the English courts.</li>
+    					<li>The Promoter is: Beattie McGuinness Bungay London LLP, 16 Short's Garden, Covent Garden, London, WC2H 9AU.</li>
+    				</ol>
+    			</div>
+    			</div>
+    			<img src="/images/general/footer.png" alt="Christmas Card Characters Footer Image" class="footer-img" />
+    		</div>
+    		<div class="back-top">
+    			<img src="/images/general/backtotop.png" alt="Back To Top" />
+    			<p>Back to top</p>
     		</div>
     	</div>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-36984719-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>	
     </body>
 </html>

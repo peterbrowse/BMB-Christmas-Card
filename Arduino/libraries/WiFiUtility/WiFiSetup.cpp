@@ -12,79 +12,94 @@
 #include <SPI.h>
 #include <WProgram.h>
 
-WiFiSetup::WiFiSetup(char* ssid, char* pass, char* serverAddress, int serverPort, int encryptionType)
+WiFiSetup::WiFiSetup(char* ssid, char* pass, char* serverAddress, int serverPort, int encryptionType, int debugLevel)
 {
 	_ssid = ssid;   //  your network SSID (name) 
 	_pass = pass;    // your network password
 	_serverAddress = serverAddress; //enter the IP of your node.js server
 	_serverPort = serverPort; //enter the port your node.js server is running on, by default it is 1337
 
-	status = WL_IDLE_STATUS;     // the Wifi radio's status
-	result = "0";
+	_status = WL_IDLE_STATUS;     // the Wifi radio's status
+	_result = "0";
 	_encryptionType = encryptionType;
+	
+	_debugLevel = debugLevel;
 }
 
 bool WiFiSetup::connect()
 {
 	// attempt to connect using WPA2 encryption:
-	  Serial.println("Attempting to connect to WPA2 network...");
-	  status = WiFi.begin(_ssid, _pass);
-	   // if you're not connected, stop here:
-	  if ( status != WL_CONNECTED) { 
-	  	software_Reset();
+	  if(_debugLevel > 0){ Serial.println("Attempting to connect to WPA2 network..."); }
+	  		_status = WiFi.begin(_ssid, _pass);
+	// if you're not connected, stop here:
+	  if ( _status != WL_CONNECTED) { 
+			if(_debugLevel > 0){ Serial.println("ERROR: SOFTWARE RESET FROM WIFISETUP"); }
+	  		software_Reset();
 	  }
 
 	  // if you are connected, print out info about the connection:
 	  else {
-	    Serial.println("Connected to network");
-	    Serial.print("IP Address: ");
-	    Serial.println(WiFi.localIP());
-	    WiFi.macAddress(mac);
-	    Serial.print("MAC Address: ");
-	    Serial.print(mac[5],HEX);
-	    Serial.print(":");
-	    Serial.print(mac[4],HEX);
-	    Serial.print(":");
-	    Serial.print(mac[3],HEX);
-	    Serial.print(":");
-	    Serial.print(mac[2],HEX);
-	    Serial.print(":");
-	    Serial.print(mac[1],HEX);
-	    Serial.print(":");
-	    Serial.println(mac[0],HEX);
-	    long rssi = WiFi.RSSI();
-	    Serial.print("Signal Strength: ");
-	    Serial.print(rssi);
-	    Serial.println(" dBm");
-
-	    _encryptionType = WiFi.encryptionType();
-	    Serial.print("Encryption Type: ");
-
+		if(_debugLevel > 0){ 
+	    	Serial.println("Connected to network");
+	    	Serial.print("IP Address: ");
+	    	Serial.println(WiFi.localIP());
+		}
+		
+	    WiFi.macAddress(_mac);
+	
+		if(_debugLevel > 0){ 
+	    	Serial.print("MAC Address: ");
+	    	Serial.print(_mac[5],HEX);
+	    	Serial.print(":");
+	    	Serial.print(_mac[4],HEX);
+	    	Serial.print(":");
+	    	Serial.print(_mac[3],HEX);
+	    	Serial.print(":");
+	    	Serial.print(_mac[2],HEX);
+	    	Serial.print(":");
+	    	Serial.print(_mac[1],HEX);
+	    	Serial.print(":");
+	    	Serial.println(_mac[0],HEX);
+		}
+		
+		long rssi = WiFi.RSSI();
+		
+		if(_debugLevel > 0){ 
+	    	Serial.print("Signal Strength: ");
+	    	Serial.print(rssi);
+	    	Serial.println(" dBm");
+		}
+	    
+		_encryptionType = WiFi.encryptionType();
+		
+		if(_debugLevel > 0){ Serial.print("Encryption Type: "); }
+		
 	    if(_encryptionType == 2) {
-	      result = "TKIP (WPA)";
+	      	_result = "TKIP (WPA)";
 	    }
 
 	    else if(_encryptionType == 5) {
-	     result = "WEP";
+	     	_result = "WEP";
 	    }
 
 	    else if(_encryptionType == 4) {
-	      result = "CCMP (WPA)";
+	      	_result = "CCMP (WPA)";
 	    }
 
 	    else if(_encryptionType == 7) {
-	      result = "NONE";
+	      	_result = "NONE";
 	    }
 
 	    else if(_encryptionType == 8) {
-	      result = "AUTO";
+	      	_result = "AUTO";
 	    }
 
 	    else {
-	      result = "N/A"; 
+	      	_result = "N/A"; 
 	    }
 
-	    Serial.println(result);
+	    if(_debugLevel > 0){ Serial.println(_result); }
+	
 	    if (client.connect(_serverAddress, _serverPort)) {
 	    	if(client.connected()) {
 	    		return 1;
@@ -101,3 +116,7 @@ void WiFiSetup::software_Reset()
 { 
 	asm volatile ("  jmp 0");  
 } 
+
+// GETTERS AND SETTERS
+int WiFiSetup::getdebugLevel(){ return _debugLevel; }
+void WiFiSetup::setdebugLevel(int debugLevel) { _debugLevel = debugLevel; }

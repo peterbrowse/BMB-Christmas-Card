@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<settings>
+  <!-- This is the rtmp connection to your influxis account -->
+  <rtmp path="rtmp://test1zpgo1g2p.rtmphost.com/FMEWebViewer" />
+</settings>
